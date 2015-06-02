@@ -81,13 +81,14 @@ h2 {
 /*--------------------------- */
 /* CONTAINER
 /*--------------------------- */
-#container{
+#container {
     background: url("../images/back_grey.jpg");
 	width: 1024px;
 	height: 718px;
 	position: relative;
 }
-.topzone{
+
+.topzone {
 	background: rgba( 255, 255, 255, 0.75 );
 	width: 1024px;
 	height: 540px;
@@ -102,7 +103,7 @@ h2 {
     background: rgba( 255, 255, 255, 0.35 );
 }
 
-.info-area{
+.info-area {
     width: 178px;
     height: 178px;
     float: left;
@@ -148,7 +149,7 @@ h2 {
 	color: #fafafa;
 }
 
-.button-box{
+.button-box {
 	width: 40px;
 	margin: 0 auto;
 }
@@ -178,11 +179,12 @@ button {
 	width: 40px;
 	height: 40px;
 }
+
 #btn-main:hover {
 	background: url("../images/icon_next_on.png");
 }
 
-#btn-skip{
+#btn-skip {
 	background: url("../images/icon_skip.png");
 	width: 40px;
 	height: 40px;
@@ -192,7 +194,7 @@ button {
 	background: url("../images/icon_skip_on.png");
 }
 
-.button-change-box{
+.button-change-box {
 	width: 40px;
 	margin: 40px auto 0;
 }
@@ -237,7 +239,7 @@ input:active {
 }
 
 /*--------------------------- */
-.counter{
+.counter {
     width: 178px;
     height: 178px;
     background: url("../images/counter.png"); 
@@ -245,7 +247,7 @@ input:active {
     float: right;
 }
 
-.counter p{
+.counter p {
     margin: 41% auto;
     text-align: center;
     color: #fff;
@@ -331,6 +333,7 @@ input:active {
 	filter: alpha(opacity=50);
 
 }
+
 .hs-table {
 	width: 50%;
 	float: left;
@@ -345,7 +348,7 @@ table {
 	background: #bbb;
 }
 
-tr{
+tr {
 	border: 1px solid rgba(247,247,247,1);
 }
 
@@ -368,7 +371,7 @@ ul {
 	padding: 20px;
 }
 
-#player-result{
+#player-result {
 	padding: 20px;
 }
 
