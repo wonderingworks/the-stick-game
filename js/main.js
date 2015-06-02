@@ -37,7 +37,9 @@ $(document).ready(function() {
 	var sums;
 	var highscoreToplistAll;
 	var highscoreToplistPoints;	
-
+	
+	// SOUND
+	/* ------------------------------------------------*/
 	// intro sound
 	var soundIntro = new Audio('media/sound_intro.mp3');
 	soundIntro.loop = true;
@@ -50,12 +52,12 @@ $(document).ready(function() {
 	// fading Introsound to volume 0.2
 	function audioFade() {
 		var interval = setInterval(function() {
-			if (home.soundIntro.volume > 0.2) {
+			if (home.soundIntro.volume > 0.3) {
 				home.soundIntro.volume -= 0.1;	
 			} else {
 				clearInterval(interval);
 			}
-		}, 100);
+		}, 300);
 	}
 	
 	// defining sound variable for soundtoggle of draggables elements
@@ -73,6 +75,44 @@ $(document).ready(function() {
     	highscores = { scores: [] };
     }
 	
+	// GAME OPTIONS (player form)
+	/* ------------------------------------------------*/
+	function gameOptions() {
+		$('#intro').remove();
+		$('#story').remove();	
+		$('#btn-main').hide();
+		$('.image').remove();
+		$('#images').hide();
+		$('.counter').hide();
+		$('.singleplayer-box').hide();
+		$('.btn-change-box').hide();
+		$('#centertext').hide();
+		$('#statistics').hide();
+		$('#ic-stats').hide();
+		$('#ic-change').hide();
+		$('#options').fadeIn(3000);
+	}
+	
+	// GETTING PLAYER NAMES
+	/* ------------------------------------------------*/
+	// single player - getting name(value) from form
+	var singlePlayerForm = document.getElementById('single-player');
+	var player0Field = document.getElementById('player-0');
+	
+	// defining player(s) and starting game
+	// event 'submit' is happening when user is submitting the form 
+	singlePlayerForm.addEventListener('submit', function(event) {
+		// to prevent that the form opens a new page
+		event.preventDefault();
+		// getting the value from the form
+		player = player0Field.value;
+		// if user didn´t enter a name
+		if (player == '' ) {
+			player = 'Unknown';
+		}
+		startGame();
+	});
+	
 	// PREPARING FOR APPENDING OF IMAGES
 	/* ------------------------------------------------*/
 	// defining the node which will be used to append the images later on
@@ -86,12 +126,11 @@ $(document).ready(function() {
 	
 	// SETTING UP THE GAME PLAN
 	/* ------------------------------------------------*/
-	// 1. adding images
-	// 2. calculating random position
-	// 3. defining a random evil stick
-	// 4. transforming images into draggable elements
-	// 5. defining dragstart, dragmove, dragend events	
-	
+	// adding images
+	// calculating random position
+	// defining a random evil stick
+	// transforming images into draggable elements
+	// defining dragstart, dragmove, dragend events		
 	function setGamePlan() {
 		// adding images
 		addImages();
@@ -321,164 +360,6 @@ $(document).ready(function() {
 		});	
 	}
 	
-	// BUTTONS
-	/* ------------------------------------------------*/
-	// must be placed after setGamePlan() that is defining image positions
-	// otherwise some elements could be positionend outside the container
-	
-	// 'main' button -> leads to 1. story -> 2. options)
-	$('#btn-main').click(function() { 
-		// go to story
-		var button = $(this);
-        $('#intro').remove();
-		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
-        $('#story').fadeIn(3000);
-		button.removeClass('btn-0').addClass('btn-1');
-		button.click(function() {
-			var button = $(this);
-			$('#story').remove();
-			button.hide();
-			$('#btn-skip').hide();
-			gameOptions();
-		});
-    });
-	
-	// 'skip intro' button -> leads to #options (defining players)
-	$('#btn-skip').click(function() {
-		var button = $(this);
-		button.hide();
-		gameOptions();		
-	});
-	
-	// 'change player' button -> leads to #options (defining players)
-	$('#btn-change').click(function() {
-		$('.btn-change-box').hide();
-		gameOptions();		
-	});
-	
-	// ICON BUTTONS
-	/* ------------------------------------------------*/
-	//sound icon (on-off toggle)
-	$('#ic-sound').click(function() {
-		// toggle (true/false) for soundOn of draggable elements
-		soundOn = !soundOn;		
-		var button = $(this);
-		//toggle for introSound
-		if ( button.hasClass('sound-on') ) {
-			soundIntro.muted = true;
-			button.removeClass('sound-on').addClass('sound-off');
-			$('#sound-img').attr('src', 'images/icon_mute_on.png');
-		} else {
-			soundIntro.muted = false;
-			button.removeClass('sound-off').addClass('sound-on');
-			$('#sound-img').attr('src', 'images/icon_mute_off.png');
-		}		
-	}); 
-	
-	// resetting the game plan and starting the game
-	function refresh() {
-		counter = 0;
-		counterSticks = 0;
-		$('.counter p').text(counter);
-		$('#statistics').hide();
-		$('.image').remove();
-		$('#centertext').show();
-		startGame();
-	}
-	
-	// refresh icon -> resetting the game plan
-	$('#ic-refresh').click(function() {
-		$('.highscore').remove();
-		$('.player-result').remove();
-		refresh();
-	});
-	
-	// change icon -> change of player
-	$('#ic-change').click(function() {
-		gameOptions();
-	});
-	
-	// stats icon -> showing player statistics and highscore toplists
-	$('#ic-stats').click(function() { 		
-		$('#statistics').hide();
-		$('.image').remove();
-		$('#images').hide();
-		$('.counter').hide();
-		$('#centertext').hide();
-		$('.singleplayer-box').hide();
-		$('.btn-change-box').hide();
-		//appending toplist percentage all
-		toplistAll();
-		//appending toplist points
-		toplistPoints();
-		//appending player result 
-		playerResult(player);
-		$('#statistics').fadeIn(3000);
-	});
-	
-	// help icon -> alert showing guide
-	$('#ic-help').click(function() { 
-		swal({   
-			title: 'The Stick Game',   
-			text: 'The stick game consists of fifteen sticks. One of them is evil. Try to get as many sticks as possible without picking the evil one. Drag one stick at a time from the game plan to the bottom area. Pick the sticks thoughtfully. Getting all the sticks shows that you are having supernatural skills.', 
-			cancelButtonText: 'X',
-			cancelButtonColor: '#fafafa',
-			showCancelButton: true,
-			confirmButtonText: 'Read more',
-			confirmButtonColor: '#fafafa',      
-			closeOnConfirm: false
-			}, function(isConfirm) { 
-					if (isConfirm) {     
-						swal({
-							title: '',   
-							text: '<h3> Scores</h3>You get 1 point for each stick. If you get all the 15 sticks you get extra points which results in a score of 20 points. You can keep track of your scores by entering your name in the beginning of the game and visiting the statistics page. <h3> Credits</h3> The Stick Game is made by Wondering. The game is originally a physical game consisting of hand-painted sticks. For more information visit <a href="http://wondering.se" target ="_blank"> Wondering.se</a>.',   
-							html: true,
-							confirmButtonText: 'X',
-							confirmButtonColor: '#fafafa',
-						});   
-					} 
-				}
-			);
-	});	
-	
-	// GAME OPTIONS (player form)
-	/* ------------------------------------------------*/
-	function gameOptions() {
-		$('#intro').remove();
-		$('#story').remove();	
-		$('#btn-main').hide();
-		$('.image').remove();
-		$('#images').hide();
-		$('.counter').hide();
-		$('.singleplayer-box').hide();
-		$('.btn-change-box').hide();
-		$('#centertext').hide();
-		$('#statistics').hide();
-		$('#ic-stats').hide();
-		$('#ic-change').hide();
-		$('#options').fadeIn(3000);
-	}
-	
-	// GETTING PLAYER NAMES
-	/* ------------------------------------------------*/
-	// single player - getting name(value) from form
-	var singlePlayerForm = document.getElementById('single-player');
-	var player0Field = document.getElementById('player-0');
-	
-	// defining player(s) and starting game
-	// event 'submit' is happening when user is submitting the form 
-	singlePlayerForm.addEventListener('submit', function(event) {
-		// to prevent that the form opens a new page
-		event.preventDefault();
-		// getting the value from the form
-		player = player0Field.value;
-		// if user didn´t enter a name
-		if (player == '' ) {
-			player = 'Unknown';
-		}
-		startGame();
-	});
-	
 	// STARTING THE GAME
 	/* ------------------------------------------------*/
 	function startGame() {
@@ -499,6 +380,19 @@ $(document).ready(function() {
 		$('#ic-refresh').show();
 		$('#ic-change').show();
 		$('#ic-stats').show();
+	}
+	
+	// RESETTING THE GAME PLAN
+	/* ------------------------------------------------*/	
+	// resetting the game plan and starting the game
+	function refresh() {
+		counter = 0;
+		counterSticks = 0;
+		$('.counter p').text(counter);
+		$('#statistics').hide();
+		$('.image').remove();
+		$('#centertext').show();
+		startGame();
 	}
 	
 	// STATISTICS
@@ -634,7 +528,117 @@ $(document).ready(function() {
 			node.append('<li> Percentage of times player got all sticks: ' + avgPerc + ' %</li>');
 			node.append('<li> Total rounds played: ' + totalRounds +'</li>');
 		}
-	}	 
+	}	
+	
+	// BUTTONS / DROPZONE 
+	/* ------------------------------------------------*/
+	// must be placed after setGamePlan() that is defining image positions
+	// otherwise some elements could be positionend outside the container
+	
+	// 'main' button -> leads to 1. story -> 2. options)
+	$('#btn-main').click(function() { 
+		// go to story
+		var button = $(this);
+        $('#intro').remove();
+		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
+        $('#story').fadeIn(3000);
+		button.removeClass('btn-0').addClass('btn-1');
+		button.click(function() {
+			var button = $(this);
+			$('#story').remove();
+			button.hide();
+			$('#btn-skip').hide();
+			gameOptions();
+		});
+    });
+	
+	// 'skip intro' button -> leads to #options (defining players)
+	$('#btn-skip').click(function() {
+		var button = $(this);
+		button.hide();
+		gameOptions();		
+	});
+	
+	// 'change player' button -> leads to #options (defining players)
+	$('#btn-change').click(function() {
+		$('.btn-change-box').hide();
+		gameOptions();		
+	});
+	
+	// ICON BUTTONS / MENU
+	/* ------------------------------------------------*/
+	//sound icon (on-off toggle)
+	$('#ic-sound').click(function() {
+		// toggle (true/false) for soundOn of draggable elements
+		soundOn = !soundOn;		
+		var button = $(this);
+		//toggle for introSound
+		if ( button.hasClass('sound-on') ) {
+			soundIntro.muted = true;
+			button.removeClass('sound-on').addClass('sound-off');
+			$('#sound-img').attr('src', 'images/icon_mute_on.png');
+		} else {
+			soundIntro.muted = false;
+			button.removeClass('sound-off').addClass('sound-on');
+			$('#sound-img').attr('src', 'images/icon_mute_off.png');
+		}		
+	}); 
+	
+	// refresh icon -> resetting the game plan
+	$('#ic-refresh').click(function() {
+		$('.highscore').remove();
+		$('.player-result').remove();
+		refresh();
+	});
+	
+	// change icon -> change of player
+	$('#ic-change').click(function() {
+		gameOptions();
+	});
+	
+	// stats icon -> showing player statistics and highscore toplists
+	$('#ic-stats').click(function() { 		
+		$('#statistics').hide();
+		$('.image').remove();
+		$('#images').hide();
+		$('.counter').hide();
+		$('#centertext').hide();
+		$('.singleplayer-box').hide();
+		$('.btn-change-box').hide();
+		//appending toplist percentage all
+		toplistAll();
+		//appending toplist points
+		toplistPoints();
+		//appending player result 
+		playerResult(player);
+		$('#statistics').fadeIn(3000);
+	});
+	
+	// help icon -> alert showing guide
+	$('#ic-help').click(function() { 
+		swal({   
+			title: 'The Stick Game',   
+			text: 'The stick game consists of fifteen sticks. One of them is evil. Try to get as many sticks as possible without picking the evil one. Drag one stick at a time from the game plan to the bottom area. Pick the sticks thoughtfully. Getting all the sticks shows that you are having supernatural skills.', 
+			cancelButtonText: 'X',
+			cancelButtonColor: '#fafafa',
+			showCancelButton: true,
+			confirmButtonText: 'Read more',
+			confirmButtonColor: '#fafafa',      
+			closeOnConfirm: false
+			}, function(isConfirm) { 
+					if (isConfirm) {     
+						swal({
+							title: '',   
+							text: '<h3> Scores</h3>You get 1 point for each stick. If you get all the 15 sticks you get extra points which results in a score of 20 points. You can keep track of your scores by entering your name in the beginning of the game and visiting the statistics page. <h3> Credits</h3> The Stick Game is made by Wondering. The game is originally a physical game consisting of hand-painted sticks. For more information visit <a href="http://wondering.se" target ="_blank"> Wondering.se</a>.',   
+							html: true,
+							confirmButtonText: 'X',
+							confirmButtonColor: '#fafafa',
+						});   
+					} 
+				}
+			);
+	});	
+	 
 });
 	
 
