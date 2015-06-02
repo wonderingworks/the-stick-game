@@ -1,11 +1,9 @@
-//v-0.1
 'use strict';
 
 // creating a global object 
-// (to make sure that all objects can be logged in the console)
 var home = {};
 
-$(document).ready(function () {
+$(document).ready(function() {
 		
 	// INTRO
 	/* ------------------------------------------------*/
@@ -31,15 +29,14 @@ $(document).ready(function () {
 	//initialize counter sticks
     var counterSticks = 0;
 	var images;
-			
+	// initialize player name
 	var player = '';
 	
 	// initialize statistic variables 
 	var uniqueNames;
 	var sums;
 	var highscoreToplistAll;
-	var highscoreToplistPoints;
-	
+	var highscoreToplistPoints;	
 
 	// intro sound
 	var soundIntro = new Audio('media/sound_intro.mp3');
@@ -49,24 +46,21 @@ $(document).ready(function () {
 	// volume
 	soundIntro.volume = 1;
 	home.soundIntro = soundIntro;
-	// for sound toggle of draggables elements
+
+	// fading Introsound to volume 0.2
+	function audioFade() {
+		var interval = setInterval(function() {
+			if (home.soundIntro.volume > 0.2) {
+				home.soundIntro.volume -= 0.1;	
+			} else {
+				clearInterval(interval);
+			}
+		}, 100);
+	}
+	
+	// defining sound variable for soundtoggle of draggables elements
 	// true = sound on, false = sound off
 	var soundOn = true;
-	
-	//soundIntro.volume = soundIntroVol;
-	// fading out sound to volume 0.2 not working as sound.volume returns undefined.
-//	function audioFade(sound){
-//		while (sound.volume > 0.2) {
-//			setTimeout(function() { sound.volume -= 0.1; }, 10);
-//		}
-//	}
-	
-	function audioFade(){
-		while ( home.soundIntro.volume > 0.2 ) {
-			setTimeout( home.soundIntro.volume -= 0.05 , 3000);
-			console.log(home.soundIntro.volume);
-		}
-	}
 	
 	// LOCALSTORAGE
 	/* ------------------------------------------------*/
@@ -74,12 +68,12 @@ $(document).ready(function () {
     var highscores = JSON.parse(localStorage.getItem('highscores'));
 	
 	// checking if there is already any information saved
-	// if there is not any information existing the object 'highscores' is created
+	// if no information existing, the object 'highscores' is created
     if ( !highscores ) {
     	highscores = { scores: [] };
     }
 	
-	// PREPARING FOR APPENDING IMAGES
+	// PREPARING FOR APPENDING OF IMAGES
 	/* ------------------------------------------------*/
 	// defining the node which will be used to append the images later on
 	var node = $('#images');
@@ -89,7 +83,6 @@ $(document).ready(function () {
 			node.append('<img id="img-' + i + '" class="image draggable drag-drop" src="images/stick_' + i + '.png">');
 		}
 	}
-
 	
 	// SETTING UP THE GAME PLAN
 	/* ------------------------------------------------*/
@@ -99,11 +92,7 @@ $(document).ready(function () {
 	// 4. transforming images into draggable elements
 	// 5. defining dragstart, dragmove, dragend events	
 	
-	function setGamePlan(){
-		//lower sound volume of introsound
-		//soundIntro.volume = 0.2;
-		
-		
+	function setGamePlan() {
 		// adding images
 		addImages();
 		// defining a random 'evil' element 
@@ -121,14 +110,14 @@ $(document).ready(function () {
 		}
 		
 		// getting all draggable elements
-		// load function needed to check i appended images is loaded
+		// load function needed to check that the appended images are loaded
 		// otherwise images might be possitoned outside the container
 		$('.draggable').load(function() {
 							 
 			var images = $('.draggable');
 
 			// looping through all elemnts and checking if current element is 'evil'
-			// if evil attaching class 'evil')
+			// attaching attribute 'evil' (true or false) to every element
 			for ( var i = 0; i < images.length; i++ ) {
 				var img = images[i];
 
@@ -149,12 +138,11 @@ $(document).ready(function () {
 				// 300 is used to prevent that several elements are placed along the left edge
 				img.style.left =  ( ( x >= 0 ) ? x : 300 ) + 'px';
 				img.style.top =  ( (y >= 0) ? y : 0 ) + 'px';
-				//console.log(img.style.left);
-				//console.log(img.style.top);
 			}
 
 			// TURNING ALL IMAGES INTO DRAGGABLE ELEMENTS
-			// with library interact.js
+			// using js-library 'interact'
+			// alerts customized with js-library 'sweet-alert'
 			/* ------------------------------------------------*/
 			// target elements with the 'draggable' class
 			interact('.draggable')
@@ -182,7 +170,6 @@ $(document).ready(function () {
 
 				// call this function on every dragend event
 				onend: function (event) {	
-					console.log(event, this);
 					var stick = $(event.target);
 					//dropzone top > 540 - 5 for tolerance
 					if ( stick.position().top > 535 ) {
@@ -190,16 +177,14 @@ $(document).ready(function () {
 
 						// evil stick picked
 						if ( stick.data('evil') && counter < 13 ) {
-							console.log('dropped evil stick');
 							counterSticks = counter;
 							//adding result to local storage
 							highscores.scores.push({ name: player, score: counter, sticks: counterSticks });
 							// transforms object (highscores) into a
 							// JSON-string and saves it as 'highscores'
 							localStorage.setItem('highscores', JSON.stringify(highscores));
-							console.log(highscores);
 							$('.draggable').removeClass('draggable');
-							//1 second delay to show text and alert
+							// 1 second delay to play sound and show alert
 							setTimeout(function() {
 								var soundEvil = new Audio('media/sound_evil.mp3');
 								if ( soundOn ) {
@@ -219,8 +204,7 @@ $(document).ready(function () {
 									closeOnConfirm: true,   
 									closeOnCancel: true
 								}, 
-									function(isConfirm){
-										console.log(isConfirm);
+									function(isConfirm) {
 										if (isConfirm) {
 											refresh();
 										}
@@ -228,7 +212,7 @@ $(document).ready(function () {
 								);	
 							}, 1000);
 
-						// got all right, last stick is evil 
+						// got all right, last remaining stick is evil 
 						} else if ( stick.data(!'evil') && counter == 13 ) {
 							// updating counter
 							counterSticks = 15;
@@ -238,9 +222,8 @@ $(document).ready(function () {
 							// transforms object (highscores) into a
 							// JSON-string and saves it as 'highscores'
 							localStorage.setItem('highscores', JSON.stringify(highscores));
-							console.log(highscores);
 							$('.draggable').removeClass('draggable');
-							// 1 second delay to show text and points
+							// 1 second delay to play sound, show points and alert
 							setTimeout(function() {
 								// changing counter text
 								$('.counter p').text(counterSticks);
@@ -264,7 +247,6 @@ $(document).ready(function () {
 									closeOnCancel: true
 								}, 
 									function(isConfirm){
-										console.log(isConfirm);
 										if (isConfirm) {
 											refresh();
 										}
@@ -272,9 +254,9 @@ $(document).ready(function () {
 								);	
 							}, 1000);
 
-						// picked good stick
+						// picked nice stick
 						} else {
-							console.log('dropped nice stick');
+							// 1 second delay to play sound, show text and points
 							setTimeout(function() {
 								var soundGood = new Audio('media/sound_good.mp3');
 								if ( soundOn ) { 
@@ -285,9 +267,11 @@ $(document).ready(function () {
 								counterSticks = counter;
 								// changing counter text
 								$('.counter p').text(counter);
-								// fade out elementet
+								// fade out element
 								stick.fadeOut(10000); 
-								if (counter == 1){
+								// removing information text 
+								// after first nice element has been dropped
+								if (counter == 1) {
 									$('#centertext').fadeOut(1000);
 									$('#ic-change').hide();
 									$('#ic-stats').hide();
@@ -299,10 +283,10 @@ $(document).ready(function () {
 			});
 
 			function dragMoveListener (event) {
-				var target = event.target,
+				var target = event.target;
 					// keep the dragged position in the data-x/data-y attributes
-					x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-					y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+				var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
+				var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
 				// translate the element
 				target.style.webkitTransform =
@@ -314,6 +298,7 @@ $(document).ready(function () {
 				target.setAttribute('data-y', y);
 		 	}
 			
+			// updating global variable
 			home.dragMoveListener = dragMoveListener;
 			
 			// listen for drop related events:
@@ -335,14 +320,13 @@ $(document).ready(function () {
     		});		
 		});	
 	}
-
 	
 	// BUTTONS
 	/* ------------------------------------------------*/
 	// must be placed after setGamePlan() that is defining image positions
 	// otherwise some elements could be positionend outside the container
 	
-	// main button
+	// 'main' button -> leads to 1. story -> 2. options)
 	$('#btn-main').click(function() { 
 		// go to story
 		var button = $(this);
@@ -350,7 +334,6 @@ $(document).ready(function () {
 		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
         $('#story').fadeIn(3000);
 		button.removeClass('btn-0').addClass('btn-1');
-		// go to options
 		button.click(function() {
 			var button = $(this);
 			$('#story').remove();
@@ -360,13 +343,14 @@ $(document).ready(function () {
 		});
     });
 	
-	// skip intro button -> goes to #options(defining players)
+	// 'skip intro' button -> leads to #options (defining players)
 	$('#btn-skip').click(function() {
 		var button = $(this);
 		button.hide();
 		gameOptions();		
 	});
 	
+	// 'change player' button -> leads to #options (defining players)
 	$('#btn-change').click(function() {
 		$('.btn-change-box').hide();
 		gameOptions();		
@@ -374,16 +358,13 @@ $(document).ready(function () {
 	
 	// ICON BUTTONS
 	/* ------------------------------------------------*/
-	
 	//sound icon (on-off toggle)
 	$('#ic-sound').click(function() {
-		//true == false = false
-		//false == false = true
 		// toggle (true/false) for soundOn of draggable elements
 		soundOn = !soundOn;		
 		var button = $(this);
 		//toggle for introSound
-		if ( button.hasClass('sound-on') ){
+		if ( button.hasClass('sound-on') ) {
 			soundIntro.muted = true;
 			button.removeClass('sound-on').addClass('sound-off');
 			$('#sound-img').attr('src', 'images/icon_mute_on.png');
@@ -395,7 +376,7 @@ $(document).ready(function () {
 	}); 
 	
 	// resetting the game plan and starting the game
-	function refresh(){
+	function refresh() {
 		counter = 0;
 		counterSticks = 0;
 		$('.counter p').text(counter);
@@ -405,19 +386,19 @@ $(document).ready(function () {
 		startGame();
 	}
 	
-	// refresh icon (-> resetting the game plan)
+	// refresh icon -> resetting the game plan
 	$('#ic-refresh').click(function() {
 		$('.highscore').remove();
 		$('.player-result').remove();
 		refresh();
 	});
 	
-	// change icon (-> change of player)
+	// change icon -> change of player
 	$('#ic-change').click(function() {
 		gameOptions();
 	});
 	
-	// stats icon (-> showing player statistics and highscore toplists)
+	// stats icon -> showing player statistics and highscore toplists
 	$('#ic-stats').click(function() { 		
 		$('#statistics').hide();
 		$('.image').remove();
@@ -435,7 +416,7 @@ $(document).ready(function () {
 		$('#statistics').fadeIn(3000);
 	});
 	
-	// help icon (alert showing guide)
+	// help icon -> alert showing guide
 	$('#ic-help').click(function() { 
 		swal({   
 			title: 'The Stick Game',   
@@ -458,12 +439,11 @@ $(document).ready(function () {
 					} 
 				}
 			);
-	});
-	
+	});	
 	
 	// GAME OPTIONS (player form)
 	/* ------------------------------------------------*/
-	function gameOptions(){
+	function gameOptions() {
 		$('#intro').remove();
 		$('#story').remove();	
 		$('#btn-main').hide();
@@ -478,20 +458,12 @@ $(document).ready(function () {
 		$('#ic-change').hide();
 		$('#options').fadeIn(3000);
 	}
-
 	
 	// GETTING PLAYER NAMES
 	/* ------------------------------------------------*/
 	// single player - getting name(value) from form
 	var singlePlayerForm = document.getElementById('single-player');
 	var player0Field = document.getElementById('player-0');
-	
-	//multiplayer // getting names (values) from form
-	/*
-	var multiPlayerForm = document.getElementById('multi-player');
-	var player1Field = document.getElementById('player-1');
-	var player2Field = document.getElementById('player-2');
-	*/
 	
 	// defining player(s) and starting game
 	// event 'submit' is happening when user is submitting the form 
@@ -501,37 +473,20 @@ $(document).ready(function () {
 		// getting the value from the form
 		player = player0Field.value;
 		// if user didn´t enter a name
-		if (player == '' ){
+		if (player == '' ) {
 			player = 'Unknown';
 		}
 		startGame();
 	});
 	
-	/*
-	multiPlayerForm.addEventListener('submit', function(event) {
-		// För att avbryta att vårt formulär skickar oss till en ny sida
-		event.preventDefault();	
-		player1 = player1Field.value;
-		if (player1 == '' ){
-			player1 = 'Unknown';
-		}
-		player2 = player2Field.value;
-		if (player2 == '' ){
-			player2 = 'Unknown';
-		}
-		startGame();
-		
-	});
-	*/
-	
 	// STARTING THE GAME
 	/* ------------------------------------------------*/
-	function startGame(){
-		//var button = $(this);
+	function startGame() {
 		$('#intro').remove();
 		$('#story').remove();
 		$('#options').hide();
 		setGamePlan();
+		// lowering sound volume of Introsound
 		audioFade();
 		$('#images').fadeIn();
 		$('#centertext').fadeIn();
@@ -545,7 +500,6 @@ $(document).ready(function () {
 		$('#ic-change').show();
 		$('#ic-stats').show();
 	}
-	
 	
 	// STATISTICS
 	// CALCULATING PLAYER RESULTS & HIGHSCORE TOPLIST
@@ -564,9 +518,6 @@ $(document).ready(function () {
 							.map(function(score) { return score.name; })
 							// filtering the results in order to achieve that every name exists only once
 							.filter(function(score, index, arr) { return arr.indexOf(score) === index; });
-
-		console.log('unique');
-		console.log(uniqueNames);
 
 		// takes the array 'uniqueNames' and creates the array 'sums'
 		// containing objects with game statistics for each unique player (name)
@@ -597,9 +548,6 @@ $(document).ready(function () {
 						};
 					});
 		
-		console.log('sums'); 
-		console.log(sums);
-		
 		// creating the array 'highscoreToplist' that is containing objects with name, percentage, totalRounds
 		// sorted (descending) by the the highest percentage of getting all 15 sticks
 		// containing top 5 results
@@ -620,11 +568,8 @@ $(document).ready(function () {
 								.sort(function(a, b) { return b.avgPoints - a.avgPoints; })
 								// slicing the array to get the first 5 elements
 								.slice(0, 5);
-		
-		console.log('highscoreToplist');
-		console.log(highscoreToplistAll);
-		console.log(highscoreToplistPoints);
-		// updatating global variables
+
+		// updating global variables
 		home.uniqueNames = uniqueNames;
 		home.sums = sums;
 		home.highscoreToplistAll = highscoreToplistAll;
@@ -634,11 +579,10 @@ $(document).ready(function () {
 	// updating the global variable
 	home.calculatePlayerStats = calculatePlayerStats;
 	
-	
 	// PUBLISHING HIGHSCORE TOPLIST & SPECIFIC PLAYER RESULT 
 	/* ------------------------------------------------*/
 	// publishing the first 5 highscores for percentage	
-	function toplistAll(){
+	function toplistAll() {
 		$('#toplist-perc').empty();
 		calculatePlayerStats();
 		var rank = 0;
@@ -651,7 +595,7 @@ $(document).ready(function () {
 	}
 	
 	// publishing the first 5 highscores for average points
-	function toplistPoints(){
+	function toplistPoints() {
 		$('#toplist-points').empty();
 		calculatePlayerStats();
 		var rank = 0;
@@ -664,7 +608,7 @@ $(document).ready(function () {
 	}
 	
 	// publishing the current player´s result/statistics 
-	function playerResult(name){
+	function playerResult(name) {
 		var node = $('#player-stats');
 		$('#player-stats').empty();	
 		calculatePlayerStats();
@@ -673,14 +617,13 @@ $(document).ready(function () {
 		//  the array contains only one object
 		var result = sums.filter(function(n) { return n.name == name; });
 		result = result[0];
-		console.log('result');
-		console.log(result);
-		// if player hasn´t played yet
+		// if player hasn´t played yet no results
 		if ( result == undefined ){
 			node.append('<li> Name: ' + player + '</li>');
 			node.append('<li> No results to show yet.</li>');
+		// player has played and has results
 		} else {	
-			// TwoDec used to minimize to 2 decimals 
+			// function TwoDec is used to minimize to 2 decimals 
 			var avgPoints = twoDec(result.avgPoints);
 			var avgSticks = twoDec(result.avgSticks);
 			var avgPerc = twoDec(result.percAllSticks);
