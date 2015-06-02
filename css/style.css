@@ -47,7 +47,6 @@ h3 {
 	font-weight: bold;
 }
 
-
 h1 {
    	font-size: 20px;
     letter-spacing: 1px;
@@ -239,30 +238,6 @@ input:active {
 }
 
 /*--------------------------- */
-.counter {
-    width: 178px;
-    height: 178px;
-    background: url("../images/counter.png"); 
-    z-index: 1000;
-    float: right;
-}
-
-.counter p {
-    margin: 41% auto;
-    text-align: center;
-    color: #fff;
-    font-size: 24px;
-    z-index: 1000;
-}
-
-.image {
-	position: absolute;
-}
-
-.drop-target {
-  background: rgba( 255, 255, 255, 0.45 );
-}
-
 #intro {
 	position: absolute;
 	background: url("../images/start-image.jpg");
@@ -309,6 +284,30 @@ input:active {
 
 .centered {
 	padding: 100px 210px;
+}
+
+.counter {
+    width: 178px;
+    height: 178px;
+    background: url("../images/counter.png"); 
+    z-index: 1000;
+    float: right;
+}
+
+.counter p {
+    margin: 41% auto;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+.image {
+	position: absolute;
+}
+
+.drop-target {
+  background: rgba( 255, 255, 255, 0.45 );
 }
 
 /*--------------------------- */
