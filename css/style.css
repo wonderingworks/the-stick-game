@@ -14,7 +14,6 @@ body, p {
 	position: relative;
 }
 
-
 a {
 	text-decoration: none;
 	color: black;
@@ -26,43 +25,9 @@ a:hover, a:focus, a:visited {
 }
 
 h3 {
-margin: 10px auto 0px;
+	margin: 10px auto 0px;
 }
 
-button{
-	background-color:transparent;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
-	padding: 0px;
-	text-decoration:none;
-	border: 0; 
-	text-transform: uppercase;
-	cursor:pointer;
-	outline: none;
-}
-
-input {
-	border: 1px solid black; 
-	padding: 5px 10px; 
-	font-size: 0.7em; 
-	color: black;  
-	margin: 20px 0 20px; 
-	width: 200px;
-	background: #eee;
-}
-input:focus { 
-	border: solid 1px pink; 
-	background: #fafafa;
-}
-
-input:active { 
-	border: solid 1px pink; 
-	background: #eee;
-}
 /*--------------------------- */
 /* HEADER
 /*--------------------------- */
@@ -111,10 +76,6 @@ h2 {
 	float: left;
 	list-style: none;
 	padding: 5px;
-}
-
-.hidden {
-    display: none;
 }
 
 /*--------------------------- */
@@ -174,26 +135,6 @@ h2 {
     z-index: 1000;
 }
 
-#player1-text {
-	margin-top: 43%;
-	margin-left: auto;
-	margin-right: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 10px;
-    z-index: 1000;
-}
-
-#player2-text {
-	margin-top: 3px%;
-	margin-left: auto;
-	margin-right: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 10px;
-    z-index: 1000;
-}
-
 .center-area {
     width: 668px;
     height: 178px;
@@ -212,7 +153,26 @@ h2 {
 	margin: 0 auto;
 }
 
-#btn-main{
+/*--------------------------- */
+/* BUTTONS
+/*--------------------------- */
+button {
+	background-color:transparent;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding: 0px;
+	text-decoration:none;
+	border: 0; 
+	text-transform: uppercase;
+	cursor:pointer;
+	outline: none;
+}
+
+#btn-main {
 	margin: 30px 0 10px;
 	background: url("../images/icon_next.png");
 	width: 40px;
@@ -247,6 +207,36 @@ h2 {
 #btn-change:hover {
 	background: url("../images/icon_x_on.png");
 }
+
+/*--------------------------- */
+/* FORMS
+/*--------------------------- */
+form {
+	margin-bottom: 40px;
+}
+
+input {
+	border: 1px solid black; 
+	padding: 5px 10px; 
+	font-size: 0.7em; 
+	color: black;  
+	margin: 20px 0 20px; 
+	width: 200px;
+	background: #eee;
+	outline: none;
+}
+
+input:focus { 
+	border: solid 1px pink; 
+	background: #fafafa;
+}
+
+input:active { 
+	border: solid 1px pink; 
+	background: #eee;
+}
+
+/*--------------------------- */
 .counter{
     width: 178px;
     height: 178px;
@@ -265,6 +255,10 @@ h2 {
 
 .image {
 	position: absolute;
+}
+
+.drop-target {
+  background: rgba( 255, 255, 255, 0.45 );
 }
 
 #intro {
@@ -313,10 +307,6 @@ h2 {
 
 .centered {
 	padding: 100px 210px;
-}
-
-form {
-	margin-bottom: 40px;
 }
 
 /*--------------------------- */
@@ -382,15 +372,3 @@ ul {
 	padding: 20px;
 }
 
-.drop-target {
-  background: rgba( 255, 255, 255, 0.45 );
-}
-
-/*.drag-drop {
-   border: solid 1px black;
-
-  -webkit-transform: translate(0px, 0px);
-          transform: translate(0px, 0px);
-
-  transition: background-color 0.3s;
-}*/
