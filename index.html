@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>v23-</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css"> 
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css"> 
+		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> 
+    </head>
+
+    <body>
+        <div id="main">
+            <div class="headerzone">
+                <div class="logo">
+					<a href="index.html">THE STICK GAME</a>
+                </div>
+                <div class="icons">
+                    <ul>
+						<li id="ic-stats"><a href="#"><img src="images/icon_stat.png"></a></li>
+						<li id="ic-change"><a href="#"><img src="images/icon_x.png"></a></li>
+						<li id="ic-refresh"><a href="#"><img src="images/icon_refresh.png"></a></li>
+						<li id="ic-sound" class="sound-on"><a href="#"><img id="sound-img" src="images/icon_mute_off.png"></a></li>
+                        <li id="ic-home"><a href="index.html"><img src="images/icon_home.png"></a></li>						
+						<li id="ic-help"><a href="#"><img src="images/icon_help.png"></a></li>
+                    </ul>
+                </div>
+			</div>
+            
+            <div id="container">
+                <div class="topzone">
+                    <!-- step 0 -->
+					<div id="intro">
+						<img id="top-image" src="media/intro_animation.gif" width="1024" height="518" alt="">
+					</div>
+					<!-- step 1 -->
+                    <div id="story">                   
+                        <div class= storytext> 
+						</div>
+                    </div>
+					<!-- step 2 -->
+                    <div id="options">  
+						<div class="centered">
+							<form action="" method="get" id="single-player">
+								<h1>One Player</h1>
+								Enter your name<br>
+								<input type="text" name="player-0" id="player-0" placeholder="name">
+								<button id="btn-single" type="submit">continue</button>
+							</form>
+							<!--<form action="" method="get" id="multi-player">
+								<h1>Two Players</h1>
+								Enter your names<br>
+								<input type="text" name="player-1" id="player-1" placeholder="Name Player 1">
+								<input type="text" name="player-2" id="player-2"placeholder="Name Player 2">
+								<button id="btn-multi" type="submit">continue</button>
+							</form>--> 
+						</div>
+                    </div>
+                    <!-- step 3 -->
+                    <div id="images" class="images drag-items">                   
+                    </div>
+					<!-- step 4 -->
+					<div id="statistics"> 
+						<div id="player-result">
+							<h1> YOUR RESULT</h1>
+							<ul id="player-stats">
+							</ul>
+						</div>
+						<div id="highscore">
+							<h1> HIGHSCORES</h1>
+							<!-- toplist percentage -->
+							<div class="hs-table">
+								<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
+								<table>
+									<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
+									<tbody id="toplist-perc">
+									</tbody>
+								</table>
+							</div>
+							<!-- toplist all points --> 
+							<div class="hs-table">
+								<p>Players that got the highest amount of <br>average points in total rounds</p>
+								<table>
+									<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
+									<tbody id="toplist-points">
+									</tbody>
+								</table>
+							</div>
+						</div>
+                    </div>
+                </div>
+                <div class="dropzone">
+                    <div class="info-area">
+						<div class="singleplayer-box">
+                        	<p id="player-text"></p>
+							<div class= "button-change-box">
+								<button id="btn-change" type="button"></button>
+							</div>
+						</div>
+						<!--
+						<div class="multiplayer-box">
+							<p id="player1-text">text</p>
+							<p id="player2-text">text</p>
+						</div>
+						-->
+                    </div>
+                    <div class="center-area">
+						<div class="button-box">
+							<button id="btn-main" class="btn-0" type="button"></button>
+							<button id="btn-skip" type="button"> </button>
+						</div>
+						<p id="centertext">Drag one stick at a time. Pick the sticks thoughtfully, one is evil.</p>
+                    </div>
+                    <div class="counter">
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+     	
+        <!-- scripts should be placed last, before body closing -->
+		<!-- jquery  -->
+        <script src="js/jquery.js"></script>
+		<!-- interact - to create draggable elements -->
+        <script src="js/interact-1.2.4.js"></script>
+		<!-- sweet alert - to create better looking alerts -->
+		<script src="js/sweetalert.min.js"></script>
+		<!-- main - the project´s code -->
+        <script src="js/main.js"></script>
+    </body>
+</html>

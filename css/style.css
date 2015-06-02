@@ -1,0 +1,396 @@
+body, p {
+	font-family: Montserrat;
+	font-size: 16px;
+    margin: 0;
+	padding: 0;
+	
+}
+
+#main {
+	width: 1024px; 
+	height: 768px; 
+	margin: 0 auto;
+	border: 1px solid black;
+	position: relative;
+}
+
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+a:hover, a:focus, a:visited {
+	text-decoration: none;
+	color: black;
+}
+
+h3 {
+margin: 10px auto 0px;
+}
+
+button{
+	background-color:transparent;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	padding: 0px;
+	text-decoration:none;
+	border: 0; 
+	text-transform: uppercase;
+	cursor:pointer;
+	outline: none;
+}
+
+input {
+	border: 1px solid black; 
+	padding: 5px 10px; 
+	font-size: 0.7em; 
+	color: black;  
+	margin: 20px 0 20px; 
+	width: 200px;
+	background: #eee;
+}
+input:focus { 
+	border: solid 1px pink; 
+	background: #fafafa;
+}
+
+input:active { 
+	border: solid 1px pink; 
+	background: #eee;
+}
+/*--------------------------- */
+/* HEADER
+/*--------------------------- */
+.headerzone{
+	background-color: #fff;
+	width: 1024px;
+	height: 50px;
+}
+
+.logo {
+	padding: 10px 10px 10px;
+	float: left;
+	font-size: 20px;
+    margin: 0;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+
+h1 {
+   	font-size: 20px;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+h2 {
+   	font-size: 16px;
+    letter-spacing: 1px;
+	text-transform: uppercase;
+}
+
+.icons {
+	font-family: Montserrat;
+	font-size: 18px;
+	float: right;
+	display: inline-block;
+}
+
+.icons ul {
+	padding: 0px;
+	margin: 0 10px;
+}
+
+.icons ul li {
+	float: left;
+	list-style: none;
+	padding: 5px;
+}
+
+.hidden {
+    display: none;
+}
+
+/*--------------------------- */
+/* CONTAINER
+/*--------------------------- */
+#container{
+    background: url("../images/back_grey.jpg");
+	width: 1024px;
+	height: 718px;
+	position: relative;
+}
+.topzone{
+	background: rgba( 255, 255, 255, 0.75 );
+	width: 1024px;
+	height: 540px;
+	position: relative;	
+    z-index: 100;
+}
+
+.dropzone {
+	width: 1024px;
+	height: 178px;
+	position: relative;
+    background: rgba( 255, 255, 255, 0.35 );
+}
+
+.info-area{
+    width: 178px;
+    height: 178px;
+    float: left;
+	color: rgba(255,255,255, 0.6);
+}
+
+.singleplayer-box {
+	width: 178px;
+    height: 178px;
+    background: url("../images/player.png"); 
+    z-index: 1000;
+    float: left;
+}
+
+.multiplayer-box {
+	width: 178px;
+    height: 178px;
+    background: url("../images/player2.png"); 
+    z-index: 1000;
+    float: left;
+}
+
+#player-text {
+	margin-top: 46%;
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+}
+
+#player1-text {
+	margin-top: 43%;
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+}
+
+#player2-text {
+	margin-top: 3px%;
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+}
+
+.center-area {
+    width: 668px;
+    height: 178px;
+    float: left;
+	text-align: center;
+}
+
+#centertext {
+	max-width: 100%;
+	padding: 70px 40px 30px;
+	color: #fafafa;
+}
+
+.button-box{
+	width: 40px;
+	margin: 0 auto;
+}
+
+#btn-main{
+	margin: 30px 0 10px;
+	background: url("../images/icon_next.png");
+	width: 40px;
+	height: 40px;
+}
+#btn-main:hover {
+	background: url("../images/icon_next_on.png");
+}
+
+#btn-skip{
+	background: url("../images/icon_skip.png");
+	width: 40px;
+	height: 40px;
+}
+
+#btn-skip:hover {
+	background: url("../images/icon_skip_on.png");
+}
+
+.button-change-box{
+	width: 40px;
+	margin: 40px auto 0;
+}
+
+#btn-change {
+	background: url("../images/icon_x.png");
+	width: 40px;
+	height: 40px;
+	text-align: center;
+}
+
+#btn-change:hover {
+	background: url("../images/icon_x_on.png");
+}
+.counter{
+    width: 178px;
+    height: 178px;
+    background: url("../images/counter.png"); 
+    z-index: 1000;
+    float: right;
+}
+
+.counter p{
+    margin: 41% auto;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+.image {
+	position: absolute;
+}
+
+#intro {
+	position: absolute;
+	background: url("../images/start-image.jpg");
+	width: 100%;
+	height: 100%;
+}
+
+#story {
+	background: url("../images/intro_sticks3.jpg");
+	width: 100%;
+	height: 100%;
+}
+
+.storytext {
+	padding: 100px 210px;
+	text-align: left;
+	font-size: 22px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 1.8;	
+}
+
+.storytext p, .storytext h1 {
+	font-size: 22px;
+}
+	
+#options {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+#options:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url("../images/opt_sticks.jpg");
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.centered {
+	padding: 100px 210px;
+}
+
+form {
+	margin-bottom: 40px;
+}
+
+/*--------------------------- */
+/* STATISTICS
+/*--------------------------- */
+#statistics {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+	
+#statistics:before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: url("../images/intro_sticks3.jpg");
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+
+}
+.hs-table {
+	width: 50%;
+	float: left;
+}
+
+table {
+ 	margin: 20px 0;
+	border-collapse: collapse; 
+	text-align: left; 
+	max-width: 480px;	
+	color: white;
+	background: #bbb;
+}
+
+tr{
+	border: 1px solid rgba(247,247,247,1);
+}
+
+th {
+	background: rgba(255,255,255,0.4);
+	text-align: left;
+	padding: 3px 5px;
+}
+
+td {
+	padding: 3px 5px;
+}
+
+ul {
+	list-style-type: none;
+	padding:0;
+}
+
+#highscore {
+	padding: 20px;
+}
+
+#player-result{
+	padding: 20px;
+}
+
+.drop-target {
+  background: rgba( 255, 255, 255, 0.45 );
+}
+
+/*.drag-drop {
+   border: solid 1px black;
+
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
+
+  transition: background-color 0.3s;
+}*/
