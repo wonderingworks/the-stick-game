@@ -11,98 +11,101 @@
 
     <body>
         <div id="main">
-            <div class="headerzone">
-                <div class="logo">
-					<a href="index.html">THE STICK GAME</a>
-                </div>
-                <div class="icons">
-                    <ul>
-						<li id="ic-stats"><a href="#"><img src="images/icon_stat.png"></a></li>
-						<li id="ic-change"><a href="#"><img src="images/icon_x.png"></a></li>
-						<li id="ic-refresh"><a href="#"><img src="images/icon_refresh.png"></a></li>
-						<li id="ic-sound" class="sound-on"><a href="#"><img id="sound-img" src="images/icon_mute_off.png"></a></li>
-                        <li id="ic-home"><a href="index.html"><img src="images/icon_home.png"></a></li>						
-						<li id="ic-help"><a href="#"><img src="images/icon_help.png"></a></li>
-                    </ul>
-                </div>
-			</div>
-            
-            <div id="container">
-                <div class="topzone">
-                    <!-- step 0 -->
-					<div id="intro">
-						<img id="top-image" src="media/intro_animation.gif" width="1024" height="518" alt="">
+			<div id="iOSIntro"></div>
+			<div id="content">
+				<div class="headerzone">
+					<div class="logo">
+						<a href="index.html">THE STICK GAME</a>
 					</div>
-					<!-- step 1 -->
-                    <div id="story">                   
-                        <div class= storytext> 
+					<div class="icons">
+						<ul>
+							<li id="ic-stats"><a href="#"><img src="images/icon_stat.png"></a></li>
+							<li id="ic-change"><a href="#"><img src="images/icon_x.png"></a></li>
+							<li id="ic-refresh"><a href="#"><img src="images/icon_refresh.png"></a></li>
+							<li id="ic-sound" class="sound-on"><a href="#"><img id="sound-img" src="images/icon_mute_off.png"></a></li>
+							<li id="ic-home"><a href="index.html"><img src="images/icon_home.png"></a></li>						
+							<li id="ic-help"><a href="#"><img src="images/icon_help.png"></a></li>
+						</ul>
+					</div>
+				</div>
+
+				<div id="container">
+					<div class="topzone">
+						<!-- step 0 -->
+						<div id="intro">
+							<img id="top-image" src="media/intro_animation.gif" width="1024" height="518" alt="">
 						</div>
-                    </div>
-					<!-- step 2 -->
-                    <div id="options">  
-						<div class="centered">
-							<form action="" method="get" id="single-player">
-								<h1>One Player</h1>
-								Enter your name<br>
-								<input type="text" name="player-0" id="player-0" placeholder="name">
-								<button id="btn-single" type="submit">continue</button>
-							</form>
-						</div>
-                    </div>
-                    <!-- step 3 -->
-                    <div id="images" class="images drag-items">                   
-                    </div>
-					<!-- step 4 -->
-					<div id="statistics"> 
-						<div id="player-result">
-							<h1> YOUR RESULT</h1>
-							<ul id="player-stats">
-							</ul>
-						</div>
-						<div id="highscore">
-							<h1> HIGHSCORES</h1>
-							<!-- toplist percentage -->
-							<div class="hs-table">
-								<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
-								<table>
-									<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
-									<tbody id="toplist-perc">
-									</tbody>
-								</table>
-							</div>
-							<!-- toplist all points --> 
-							<div class="hs-table">
-								<p>Players that got the highest amount of <br>average points in total rounds</p>
-								<table>
-									<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
-									<tbody id="toplist-points">
-									</tbody>
-								</table>
+						<!-- step 1 -->
+						<div id="story">                   
+							<div class= storytext> 
 							</div>
 						</div>
-                    </div>
-                </div>
-                <div class="dropzone">
-                    <div class="info-area">
-						<div class="singleplayer-box">
-                        	<p id="player-text"></p>
-							<div class= "button-change-box">
-								<button id="btn-change" type="button"></button>
+						<!-- step 2 -->
+						<div id="options">  
+							<div class="centered">
+								<form action="" method="get" id="single-player">
+									<h1>One Player</h1>
+									Enter your name<br>
+									<input type="text" name="player-0" id="player-0" placeholder="name">
+									<button id="btn-single" type="submit">continue</button>
+								</form>
 							</div>
 						</div>
-                    </div>
-                    <div class="center-area">
-						<div class="button-box">
-							<button id="btn-main" class="btn-0" type="button"></button>
-							<button id="btn-skip" type="button"> </button>
+						<!-- step 3 -->
+						<div id="images" class="images drag-items">                   
 						</div>
-						<p id="centertext">Drag one stick at a time to the bottom area.<br> Pick the sticks thoughtfully, one is evil.</p>
-                    </div>
-                    <div class="counter">
-                        <p>0</p>
-                    </div>
-                </div>
-            </div>
+						<!-- step 4 -->
+						<div id="statistics"> 
+							<div id="player-result">
+								<h1> YOUR RESULT</h1>
+								<ul id="player-stats">
+								</ul>
+							</div>
+							<div id="highscore">
+								<h1> HIGHSCORES</h1>
+								<!-- toplist percentage -->
+								<div class="hs-table">
+									<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
+									<table>
+										<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
+										<tbody id="toplist-perc">
+										</tbody>
+									</table>
+								</div>
+								<!-- toplist all points --> 
+								<div class="hs-table">
+									<p>Players that got the highest amount of <br>average points in total rounds</p>
+									<table>
+										<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
+										<tbody id="toplist-points">
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="dropzone">
+						<div class="info-area">
+							<div class="singleplayer-box">
+								<p id="player-text"></p>
+								<div class= "button-change-box">
+									<button id="btn-change" type="button"></button>
+								</div>
+							</div>
+						</div>
+						<div class="center-area">
+							<div class="button-box">
+								<button id="btn-main" class="btn-0" type="button"></button>
+								<button id="btn-skip" type="button"> </button>
+							</div>
+							<p id="centertext">Drag one stick at a time to the bottom area.<br> Pick the sticks thoughtfully, one is evil.</p>
+						</div>
+						<div class="counter">
+							<p>0</p>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>           
      	
         <!-- scripts should be placed last, before body closing -->
