@@ -3,7 +3,7 @@
 // creating a global object 
 var home = {};
 
-$(document).ready(function() {
+$(document).ready(function () {
 	
 	// INTRO
 	/* ------------------------------------------------*/
@@ -36,10 +36,10 @@ $(document).ready(function() {
 	var uniqueNames;
 	var sums;
 	var highscoreToplistAll;
-	var highscoreToplistPoints;	
+	var highscoreToplistPoints;
 	
 	// SOUND
-	/* ------------------------------------------------*/	
+	/* ------------------------------------------------*/
 	// intro sound
 	var soundIntro = new Audio('media/sound_intro.mp3');
 	soundIntro.loop = true;
@@ -53,9 +53,9 @@ $(document).ready(function() {
 
 	// fading Introsound to volume 0.2
 	function audioFade() {
-		var interval = setInterval(function() {
+		var interval = setInterval(function () {
 			if (home.soundIntro.volume > 0.3) {
-				home.soundIntro.volume -= 0.1;	
+				home.soundIntro.volume -= 0.1;
 			} else {
 				clearInterval(interval);
 			}
@@ -65,10 +65,10 @@ $(document).ready(function() {
 	// IOS-INTRO (fixing iOS issue of autoplay disable)
 	/* ------------------------------------------------*/
 	// checking if device is an iOS device (true/false)
-	function isIOS(){
-    	return (
-			(navigator.platform.indexOf('iPad') != -1) ||
-			(navigator.platform.indexOf("iPhone") != -1)
+	function isIOS() {
+		return (
+			(navigator.platform.indexOf('iPad') !== -1) ||
+			(navigator.platform.indexOf("iPhone") !== -1)
 		);
 	}
 	
@@ -76,18 +76,18 @@ $(document).ready(function() {
 	
 	// needed because on iOS preload and autoplay are disabled. 
 	// on iOS no data is loaded until the user initiates it.
-	if ( iOSDevice ) {
+	if (iOSDevice) {
 		$('#content').hide();
 		$('#iOSIntro').append('<img src="images/intro-0.png">');
-		$('#iOSIntro').show();	
+		$('#iOSIntro').show();
 	} else {
-		$('#iOSIntro').remove();	
+		$('#iOSIntro').remove();
 		soundIntro.play();
 	}
 	
 	// when clicking on the screen
 	// going to main content and playing sound
-	$('#iOSIntro').click(function() {
+	$('#iOSIntro').click(function () {
 		$('#iOSIntro').remove();
 		$('#content').show();
 		soundIntro.play();
@@ -100,15 +100,15 @@ $(document).ready(function() {
 	
 	// checking if there is already any information saved
 	// if no information existing, the object 'highscores' is created
-    if ( !highscores ) {
-    	highscores = { scores: [] };
+    if (!highscores) {
+		highscores = { scores: [] };
     }
 	
 	// GAME OPTIONS (player form)
 	/* ------------------------------------------------*/
 	function gameOptions() {
 		$('#intro').remove();
-		$('#story').remove();	
+		$('#story').remove();
 		$('#btn-main').hide();
 		$('.image').remove();
 		$('#images').hide();
@@ -130,13 +130,13 @@ $(document).ready(function() {
 	
 	// defining player(s) and starting game
 	// event 'submit' is happening when user is submitting the form 
-	singlePlayerForm.addEventListener('submit', function(event) {
+	singlePlayerForm.addEventListener('submit', function (event) {
 		// to prevent that the form opens a new page
 		event.preventDefault();
 		// getting the value from the form
 		player = player0Field.value;
 		// if user didn´t enter a name
-		if (player == '' ) {
+		if (player === '') {
 			player = 'Unknown';
 		}
 		startGame();
@@ -147,8 +147,8 @@ $(document).ready(function() {
 	// defining the node which will be used to append the images later on
 	var node = $('#images');
     // the function 'addImages' appends all images
-	function addImages(){	
-		for ( var i = 1; i <= 15; i ++ ) {
+	function addImages() {
+		for (var i = 1; i <= 15; i ++) {
 			node.append('<img id="img-' + i + '" class="image draggable drag-drop" src="images/stick_' + i + '.png">');
 		}
 	}
@@ -180,16 +180,16 @@ $(document).ready(function() {
 		// getting all draggable elements
 		// load function needed to check that the appended images are loaded
 		// otherwise images might be possitoned outside the container
-		$('.draggable').load(function() {
+		$('.draggable').load(function () {
 							 
 			var images = $('.draggable');
 
 			// looping through all elemnts and checking if current element is 'evil'
 			// attaching attribute 'evil' (true or false) to every element
-			for ( var i = 0; i < images.length; i++ ) {
+			for (var i = 0; i < images.length; i++) {
 				var img = images[i];
 
-				if ( i == evil ) {
+				if (i == evil) {
 					img.setAttribute('data-evil', true);
 				} else {
 					img.setAttribute('data-evil', false);
@@ -204,7 +204,7 @@ $(document).ready(function() {
 				// assures that elements are positioned 
 				// within 'topzone's left and top edge 
 				// 300 is used to prevent that several elements are placed along the left edge
-				img.style.left =  ( ( x >= 0 ) ? x : 300 ) + 'px';
+				img.style.left =  ( (x >= 0) ? x : 300 ) + 'px';
 				img.style.top =  ( (y >= 0) ? y : 0 ) + 'px';
 			}
 
@@ -226,7 +226,7 @@ $(document).ready(function() {
 				},
 
 				//play sound
-				onstart: function(event) {
+				onstart: function (event) {
 					var soundDrag = new Audio('media/sound_drag.mp3');
 					if (soundOn) {
 						soundDrag.play(0);
@@ -240,11 +240,11 @@ $(document).ready(function() {
 				onend: function (event) {	
 					var stick = $(event.target);
 					//dropzone top > 540 - 5 for tolerance
-					if ( stick.position().top > 535 ) {
+					if (stick.position().top > 535) {
 						stick.removeClass('draggable');
 
 						// evil stick picked
-						if ( stick.data('evil') && counter < 13 ) {
+						if (stick.data('evil') && counter < 13) {
 							counterSticks = counter;
 							//adding result to local storage
 							highscores.scores.push({ name: player, score: counter, sticks: counterSticks });
@@ -253,9 +253,9 @@ $(document).ready(function() {
 							localStorage.setItem('highscores', JSON.stringify(highscores));
 							$('.draggable').removeClass('draggable');
 							// 1 second delay to play sound and show alert
-							setTimeout(function() {
+							setTimeout(function () {
 								var soundEvil = new Audio('media/sound_evil.mp3');
-								if ( soundOn ) {
+								if (soundOn) {
 									soundEvil.play();
 								}
 								$('#ic-change').show();
@@ -272,7 +272,7 @@ $(document).ready(function() {
 									closeOnConfirm: true,   
 									closeOnCancel: true
 								}, 
-									function(isConfirm) {
+									function (isConfirm) {
 										if (isConfirm) {
 											refresh();
 										}
@@ -281,7 +281,7 @@ $(document).ready(function() {
 							}, 1000);
 
 						// got all right, last remaining stick is evil 
-						} else if ( stick.data(!'evil') && counter == 13 ) {
+						} else if (stick.data(!'evil') && counter == 13) {
 							// updating counter
 							counterSticks = 15;
 							counter = 20;
@@ -292,11 +292,11 @@ $(document).ready(function() {
 							localStorage.setItem('highscores', JSON.stringify(highscores));
 							$('.draggable').removeClass('draggable');
 							// 1 second delay to play sound, show points and alert
-							setTimeout(function() {
+							setTimeout(function () {
 								// changing counter text
 								$('.counter p').text(counterSticks);
 								var soundGood = new Audio('media/sound_good.mp3');
-								if ( soundOn ) {
+								if (soundOn) {
 									soundGood.play();
 								}
 								$('.counter p').text(counter);
@@ -314,7 +314,7 @@ $(document).ready(function() {
 									closeOnConfirm: true,   
 									closeOnCancel: true
 								}, 
-									function(isConfirm){
+									function (isConfirm){
 										if (isConfirm) {
 											refresh();
 										}
@@ -325,9 +325,9 @@ $(document).ready(function() {
 						// picked nice stick
 						} else {
 							// 1 second delay to play sound, show text and points
-							setTimeout(function() {
+							setTimeout(function () {
 								var soundGood = new Audio('media/sound_good.mp3');
-								if ( soundOn ) { 
+								if (soundOn) { 
 									soundGood.play();
 								}
 								// updating counter
@@ -339,7 +339,7 @@ $(document).ready(function() {
 								stick.fadeOut(10000); 
 								// removing information text 
 								// after first nice element has been dropped
-								if (counter == 1) {
+								if (counter === 1) {
 									$('#centertext').fadeOut(1000);
 									$('#ic-change').hide();
 									$('#ic-stats').hide();
@@ -433,14 +433,14 @@ $(document).ready(function() {
 	}
 	
 	//calculating player results and highscore toplist
-	function calculatePlayerStats(){
+	function calculatePlayerStats() {
 		// creates array 'uniqueNames' conatining all unique names 
 		uniqueNames = highscores.scores
 							// using the method .map to get all players names
 							// map takes a function that returns an array contsining all players names (name)
-							.map(function(score) { return score.name; })
+							.map(function (score) { return score.name; })
 							// filtering the results in order to achieve that every name exists only once
-							.filter(function(score, index, arr) { return arr.indexOf(score) === index; });
+							.filter(function (score, index, arr) { return arr.indexOf(score) === index; });
 
 		// takes the array 'uniqueNames' and creates the array 'sums'
 		// containing objects with game statistics for each unique player (name)
@@ -450,13 +450,13 @@ $(document).ready(function() {
 					// total times user got all 15 sticks, total rounds played
 					.map(function(name) {
 						var totalPoints = highscores.scores
-									.filter(function(player) { return player.name == name; })
-									.reduce(function(acc, curr) { return acc + curr.score; }, 0);
+									.filter(function (player) { return player.name == name; })
+									.reduce(function (acc, curr) { return acc + curr.score; }, 0);
 						var totalSticks = highscores.scores
-									.filter(function(player) { return player.name == name; })
-									.reduce(function(acc, curr) { return acc + curr.sticks; }, 0);
+									.filter(function (player) { return player.name == name; })
+									.reduce(function (acc, curr) { return acc + curr.sticks; }, 0);
 						var allSticks = highscores.scores
-									.filter(function(player) { return player.name == name && player.sticks == 15; }).length;
+									.filter(function (player) { return player.name == name && player.sticks == 15; }).length;
 						var totalRounds = highscores.scores.filter(function(s) { return s.name == name; }).length;
 						// och returneras objekt med varje unika spelarens spelstatistik
 						return {
@@ -477,18 +477,18 @@ $(document).ready(function() {
 		highscoreToplistAll =  sums
 								// map returns an array with objects containing 
 								// name, percentage, totalRounds
-								.map(function(obj) { return {name: obj.name, perc: obj.percAllSticks, totalRounds: obj.totalRounds }; })
+								.map(function (obj) { return {name: obj.name, perc: obj.percAllSticks, totalRounds: obj.totalRounds }; })
 								// sorts the array (descending) by the highest percentage of getting all 15 sticks
-								.sort(function(a, b) { return b.perc - a.perc; })
+								.sort(function (a, b) { return b.perc - a.perc; })
 								// slicing the array to get the first 5 elements
 								.slice(0, 5);
 		
 		highscoreToplistPoints = sums
 								// map returns an array with objects containing 
 								// name, average points per round, totalRounds
-								.map(function(obj) { return {name: obj.name, avgPoints: obj.avgPoints, totalRounds: obj.totalRounds }; })
+								.map(function (obj) { return {name: obj.name, avgPoints: obj.avgPoints, totalRounds: obj.totalRounds }; })
 								// sorts the array (descending) by the highest average points per round
-								.sort(function(a, b) { return b.avgPoints - a.avgPoints; })
+								.sort(function (a, b) { return b.avgPoints - a.avgPoints; })
 								// slicing the array to get the first 5 elements
 								.slice(0, 5);
 
@@ -509,7 +509,7 @@ $(document).ready(function() {
 		$('#toplist-perc').empty();
 		calculatePlayerStats();
 		var rank = 0;
-		highscoreToplistAll.forEach(function(obj) {
+		highscoreToplistAll.forEach(function (obj) {
 			rank += 1;
 			var perc = twoDec(obj.perc) + ' %';
 			var rounds = (obj.totalRounds == 1) ? ( obj.totalRounds + ' round' ) : ( obj.totalRounds + ' rounds' );
@@ -522,7 +522,7 @@ $(document).ready(function() {
 		$('#toplist-points').empty();
 		calculatePlayerStats();
 		var rank = 0;
-		highscoreToplistPoints.forEach(function(obj) {
+		highscoreToplistPoints.forEach(function (obj) {
 			rank += 1;
 			var avgPoints = twoDec(obj.avgPoints);
 			var rounds = (obj.totalRounds == 1) ? ( obj.totalRounds + ' round' ) : ( obj.totalRounds + ' rounds' );
@@ -538,10 +538,10 @@ $(document).ready(function() {
 		// creating array 'result' by filtering 'sums' by one player´s name (player)
 		// 'result' contains one specific player's statistics, 
 		//  the array contains only one object
-		var result = sums.filter(function(n) { return n.name == name; });
+		var result = sums.filter(function (n) { return n.name == name; });
 		result = result[0];
 		// if player hasn´t played yet no results
-		if ( result == undefined ){
+		if (result === undefined) {
 			node.append('<li> Name: ' + player + '</li>');
 			node.append('<li> No results to show yet.</li>');
 		// player has played and has results
@@ -565,14 +565,14 @@ $(document).ready(function() {
 	// otherwise some elements could be positionend outside the container
 	
 	// 'main' button -> leads to 1. story -> 2. options)
-	$('#btn-main').click(function() { 
+	$('#btn-main').click(function () { 
 		// go to story
 		var button = $(this);
         $('#intro').remove();
 		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
         $('#story').fadeIn(3000);
 		button.removeClass('btn-0').addClass('btn-1');
-		button.click(function() {
+		button.click(function () {
 			var button = $(this);
 			$('#story').remove();
 			button.hide();
@@ -582,14 +582,14 @@ $(document).ready(function() {
     });
 	
 	// 'skip intro' button -> leads to #options (defining players)
-	$('#btn-skip').click(function() {
+	$('#btn-skip').click(function () {
 		var button = $(this);
 		button.hide();
 		gameOptions();		
 	});
 	
 	// 'change player' button -> leads to #options (defining players)
-	$('#btn-change').click(function() {
+	$('#btn-change').click(function () {
 		$('.btn-change-box').hide();
 		gameOptions();		
 	});
@@ -597,12 +597,12 @@ $(document).ready(function() {
 	// ICON BUTTONS / MENU
 	/* ------------------------------------------------*/
 	//sound icon (on-off toggle)
-	$('#ic-sound').click(function() {
+	$('#ic-sound').click(function () {
 		// toggle (true/false) for soundOn of draggable elements
 		soundOn = !soundOn;		
 		var button = $(this);
 		//toggle for introSound
-		if ( button.hasClass('sound-on') ) {
+		if (button.hasClass('sound-on')) {
 			soundIntro.muted = true;
 			button.removeClass('sound-on').addClass('sound-off');
 			$('#sound-img').attr('src', 'images/icon_mute_on.png');
@@ -614,7 +614,7 @@ $(document).ready(function() {
 	}); 
 	
 	// refresh icon -> resetting the game plan
-	$('#ic-refresh').click(function() {
+	$('#ic-refresh').click(function () {
 		$('.highscore').remove();
 		$('.player-result').remove();
 		refresh();
@@ -626,7 +626,7 @@ $(document).ready(function() {
 	});
 	
 	// stats icon -> showing player statistics and highscore toplists
-	$('#ic-stats').click(function() { 		
+	$('#ic-stats').click(function () { 		
 		$('#statistics').hide();
 		$('.image').remove();
 		$('#images').hide();
@@ -644,7 +644,7 @@ $(document).ready(function() {
 	});
 	
 	// help icon -> alert showing guide
-	$('#ic-help').click(function() { 
+	$('#ic-help').click(function () { 
 		swal({   
 			title: 'The Stick Game',   
 			text: 'The stick game consists of fifteen sticks. One of them is evil. Try to get as many sticks as possible without picking the evil one. Drag one stick at a time from the game plan to the bottom area. Pick the sticks thoughtfully. Getting all the sticks shows that you are having supernatural skills.', 
