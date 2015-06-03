@@ -4,10 +4,10 @@
 var home = {};
 
 $(document).ready(function() {
-		
+	
 	// INTRO
 	/* ------------------------------------------------*/
-	// hiding elemnts
+	// hiding elements
 	$('#story').hide();
 	$('#options').hide();
 	$('#images').hide();
@@ -39,15 +39,17 @@ $(document).ready(function() {
 	var highscoreToplistPoints;	
 	
 	// SOUND
-	/* ------------------------------------------------*/
+	/* ------------------------------------------------*/	
 	// intro sound
 	var soundIntro = new Audio('media/sound_intro.mp3');
 	soundIntro.loop = true;
 	soundIntro.muted = false;
-	soundIntro.play();
 	// volume
 	soundIntro.volume = 1;
 	home.soundIntro = soundIntro;
+	// defining sound variable for soundtoggle of draggables elements
+	// true = sound on, false = sound off
+	var soundOn = true;
 
 	// fading Introsound to volume 0.2
 	function audioFade() {
@@ -60,9 +62,36 @@ $(document).ready(function() {
 		}, 300);
 	}
 	
-	// defining sound variable for soundtoggle of draggables elements
-	// true = sound on, false = sound off
-	var soundOn = true;
+	// IOS-INTRO (fixing iOS issue of autoplay disable)
+	/* ------------------------------------------------*/
+	// checking if device is an iOS device (true/false)
+	function isIOS(){
+    	return (
+			(navigator.platform.indexOf('iPad') != -1) ||
+			(navigator.platform.indexOf("iPhone") != -1)
+		);
+	}
+	
+	var iOSDevice = isIOS();
+	
+	// needed because on iOS preload and autoplay are disabled. 
+	// on iOS no data is loaded until the user initiates it.
+	if ( iOSDevice ) {
+		$('#content').hide();
+		$('#iOSIntro').append('<img src="images/intro-0.png">');
+		$('#iOSIntro').show();	
+	} else {
+		$('#iOSIntro').remove();	
+		soundIntro.play();
+	}
+	
+	// when clicking on the screen
+	// going to main content and playing sound
+	$('#iOSIntro').click(function() {
+		$('#iOSIntro').remove();
+		$('#content').show();
+		soundIntro.play();
+	});
 	
 	// LOCALSTORAGE
 	/* ------------------------------------------------*/
