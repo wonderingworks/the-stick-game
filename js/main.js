@@ -20,14 +20,14 @@ $(document).ready(function () {
 	$('#ic-change').hide();
 	$('#centertext').hide();
 
-    // INITIALIZE GLOBAL VARIABLES
+    	// INITIALIZE GLOBAL VARIABLES
 	/* ------------------------------------------------*/
 	// defining container / don´t use jquery for defining container as interact doesn´t support it
 	var container = document.getElementById('container');
 	//initialize counter points
-    var counter = 0;
+    	var counter = 0;
 	//initialize counter sticks
-    var counterSticks = 0;
+	var counterSticks = 0;
 	var images;
 	// initialize player name
 	var player = '';
@@ -96,13 +96,13 @@ $(document).ready(function () {
 	// LOCALSTORAGE
 	/* ------------------------------------------------*/
 	// Retrieving object 'highscores' from local storage
-    var highscores = JSON.parse(localStorage.getItem('highscores'));
+	 var highscores = JSON.parse(localStorage.getItem('highscores'));
 	
 	// checking if there is already any information saved
 	// if no information existing, the object 'highscores' is created
-    if (!highscores) {
+	if (!highscores) {
 		highscores = { scores: [] };
-    }
+	}
 	
 	// GAME OPTIONS (player form)
 	/* ------------------------------------------------*/
@@ -146,7 +146,7 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/
 	// defining the node which will be used to append the images later on
 	var node = $('#images');
-    // the function 'addImages' appends all images
+    	// the function 'addImages' appends all images
 	function addImages() {
 		for (var i = 1; i <= 15; i ++) {
 			node.append('<img id="img-' + i + '" class="image draggable drag-drop" src="images/stick_' + i + '.png">');
@@ -385,7 +385,7 @@ $(document).ready(function () {
 				ondropdeactivate: function (event) {
 					event.target.classList.remove('drop-target');
 				}
-    		});		
+    			});		
 		});	
 	}
 	
@@ -436,11 +436,11 @@ $(document).ready(function () {
 	function calculatePlayerStats() {
 		// creates array 'uniqueNames' conatining all unique names 
 		uniqueNames = highscores.scores
-							// using the method .map to get all players names
-							// map takes a function that returns an array contsining all players names (name)
-							.map(function (score) { return score.name; })
-							// filtering the results in order to achieve that every name exists only once
-							.filter(function (score, index, arr) { return arr.indexOf(score) === index; });
+						// using the method .map to get all players names
+						// map takes a function that returns an array contsining all players names (name)
+						.map(function (score) { return score.name; })
+						// filtering the results in order to achieve that every name exists only once
+						.filter(function (score, index, arr) { return arr.indexOf(score) === index; });
 
 		// takes the array 'uniqueNames' and creates the array 'sums'
 		// containing objects with game statistics for each unique player (name)
@@ -475,22 +475,22 @@ $(document).ready(function () {
 		// sorted (descending) by the the highest percentage of getting all 15 sticks
 		// containing top 5 results
 		highscoreToplistAll =  sums
-								// map returns an array with objects containing 
-								// name, percentage, totalRounds
-								.map(function (obj) { return {name: obj.name, perc: obj.percAllSticks, totalRounds: obj.totalRounds }; })
-								// sorts the array (descending) by the highest percentage of getting all 15 sticks
-								.sort(function (a, b) { return b.perc - a.perc; })
-								// slicing the array to get the first 5 elements
-								.slice(0, 5);
+							// map returns an array with objects containing 
+							// name, percentage, totalRounds
+							.map(function (obj) { return {name: obj.name, perc: obj.percAllSticks, totalRounds: obj.totalRounds }; })
+							// sorts the array (descending) by the highest percentage of getting all 15 sticks
+							.sort(function (a, b) { return b.perc - a.perc; })
+							// slicing the array to get the first 5 elements
+							.slice(0, 5);
 		
 		highscoreToplistPoints = sums
-								// map returns an array with objects containing 
-								// name, average points per round, totalRounds
-								.map(function (obj) { return {name: obj.name, avgPoints: obj.avgPoints, totalRounds: obj.totalRounds }; })
-								// sorts the array (descending) by the highest average points per round
-								.sort(function (a, b) { return b.avgPoints - a.avgPoints; })
-								// slicing the array to get the first 5 elements
-								.slice(0, 5);
+							// map returns an array with objects containing 
+							// name, average points per round, totalRounds
+							.map(function (obj) { return {name: obj.name, avgPoints: obj.avgPoints, totalRounds: obj.totalRounds }; })
+							// sorts the array (descending) by the highest average points per round
+							.sort(function (a, b) { return b.avgPoints - a.avgPoints; })
+							// slicing the array to get the first 5 elements
+							.slice(0, 5);
 
 		// updating global variables
 		home.uniqueNames = uniqueNames;
@@ -568,9 +568,9 @@ $(document).ready(function () {
 	$('#btn-main').click(function () { 
 		// go to story
 		var button = $(this);
-        $('#intro').remove();
+        	$('#intro').remove();
 		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
-        $('#story').fadeIn(3000);
+        	$('#story').fadeIn(3000);
 		button.removeClass('btn-0').addClass('btn-1');
 		button.click(function () {
 			var button = $(this);
@@ -579,7 +579,7 @@ $(document).ready(function () {
 			$('#btn-skip').hide();
 			gameOptions();
 		});
-    });
+    	});
 	
 	// 'skip intro' button -> leads to #options (defining players)
 	$('#btn-skip').click(function () {
