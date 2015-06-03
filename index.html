@@ -1,16 +1,22 @@
 <!doctype html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>The Stick Game</title>
-        <link rel="stylesheet" type="text/css" href="css/style.css"> 
-		<link rel="stylesheet" type="text/css" href="css/sweetalert.css"> 
+	<head>
+		<meta charset="utf-8">
+		<title>The Stick Game</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 		<link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-        <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1"> 
-    </head>
+		<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/apple-touch-icon-152x152.png">
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">	
+	</head>
 
-    <body>
-        <div id="main">
+	<body>
+		<div id="main">
 			<div id="iOSIntro"></div>
 			<div id="content">
 				<div class="headerzone">
@@ -29,61 +35,61 @@
 					</div>
 				</div>
 
-				<div id="container">
-					<div class="topzone">
-						<!-- step 0 -->
-						<div id="intro">
-							<img id="top-image" src="media/intro_animation.gif" width="1024" height="518" alt="">
+			<div id="container">
+				<div class="topzone">
+					<!-- step 0 -->
+					<div id="intro">
+						<img id="top-image" src="media/intro_animation.gif" width="1024" height="518" alt="">
+					</div>
+					<!-- step 1 -->
+					<div id="story">                   
+						<div class= storytext>
 						</div>
-						<!-- step 1 -->
-						<div id="story">                   
-							<div class= storytext> 
+					</div>
+					<!-- step 2 -->
+					<div id="options">  
+						<div class="centered">
+							<form action="" method="get" id="single-player">
+								<h1>One Player</h1>
+								Enter your name<br>
+								<input type="text" name="player-0" id="player-0" placeholder="name">
+								<button id="btn-single" type="submit">continue</button>
+							</form>
+						</div>
+					</div>
+					<!-- step 3 -->
+					<div id="images" class="images drag-items">                   
+					</div>
+					<!-- step 4 -->
+					<div id="statistics"> 
+						<div id="player-result">
+							<h1> YOUR RESULT</h1>
+							<ul id="player-stats">
+							</ul>
+						</div>
+						<div id="highscore">
+							<h1> HIGHSCORES</h1>
+							<!-- toplist percentage -->
+							<div class="hs-table">
+								<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
+								<table>
+									<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
+									<tbody id="toplist-perc">
+									</tbody>
+								</table>
 							</div>
-						</div>
-						<!-- step 2 -->
-						<div id="options">  
-							<div class="centered">
-								<form action="" method="get" id="single-player">
-									<h1>One Player</h1>
-									Enter your name<br>
-									<input type="text" name="player-0" id="player-0" placeholder="name">
-									<button id="btn-single" type="submit">continue</button>
-								</form>
-							</div>
-						</div>
-						<!-- step 3 -->
-						<div id="images" class="images drag-items">                   
-						</div>
-						<!-- step 4 -->
-						<div id="statistics"> 
-							<div id="player-result">
-								<h1> YOUR RESULT</h1>
-								<ul id="player-stats">
-								</ul>
-							</div>
-							<div id="highscore">
-								<h1> HIGHSCORES</h1>
-								<!-- toplist percentage -->
-								<div class="hs-table">
-									<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
-									<table>
-										<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
-										<tbody id="toplist-perc">
-										</tbody>
-									</table>
-								</div>
-								<!-- toplist all points --> 
-								<div class="hs-table">
-									<p>Players that got the highest amount of <br>average points in total rounds</p>
-									<table>
-										<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
-										<tbody id="toplist-points">
-										</tbody>
-									</table>
-								</div>
+							<!-- toplist all points --> 
+							<div class="hs-table">
+								<p>Players that got the highest amount of <br>average points in total rounds</p>
+								<table>
+									<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
+									<tbody id="toplist-points">
+									</tbody>
+								</table>
 							</div>
 						</div>
 					</div>
+				</div>
 					<div class="dropzone">
 						<div class="info-area">
 							<div class="singleplayer-box">
@@ -106,16 +112,16 @@
 					</div>
 				</div>
 			</div>
-        </div>           
-     	
-        <!-- scripts should be placed last, before body closing -->
+		</div>           
+
+		<!-- scripts should be placed last, before body closing -->
 		<!-- jquery  -->
-        <script src="js/jquery.js"></script>
+		<script src="js/jquery.js"></script>
 		<!-- interact - to create draggable elements -->
-        <script src="js/interact-1.2.4.js"></script>
+		<script src="js/interact-1.2.4.js"></script>
 		<!-- sweet alert - to create better looking alerts -->
 		<script src="js/sweetalert.min.js"></script>
 		<!-- main - the project´s code -->
-        <script src="js/main.js"></script>
-    </body>
+		<script src="js/main.js"></script>
+	</body>
 </html>
