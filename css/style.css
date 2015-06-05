@@ -109,42 +109,42 @@ h3 {
 }
 
 .info-area {
-    width: 178px;
-    height: 178px;
-    float: left;
+    	width: 178px;
+    	height: 178px;
+    	float: left;
 	color: rgba(255,255,255, 0.6);
 }
 
 .singleplayer-box {
 	width: 178px;
-    height: 178px;
-    background: url("../images/player.png"); 
-    z-index: 1000;
-    float: left;
+    	height: 178px;
+    	background: url("../images/player.png"); 
+    	z-index: 1000;
+    	float: left;
 }
 
 .multiplayer-box {
 	width: 178px;
-    height: 178px;
-    background: url("../images/player2.png"); 
-    z-index: 1000;
-    float: left;
+    	height: 178px;
+    	background: url("../images/player2.png"); 
+    	z-index: 1000;
+    	float: left;
 }
 
 #player-text {
 	margin-top: 46%;
 	margin-left: auto;
 	margin-right: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 10px;
-    z-index: 1000;
+    	text-align: center;
+    	color: #fff;
+    	font-size: 10px;
+    	z-index: 1000;
 }
 
 .center-area {
-    width: 668px;
-    height: 178px;
-    float: left;
+    	width: 668px;
+    	height: 178px;
+    	float: left;
 	text-align: center;
 }
 
@@ -293,19 +293,19 @@ input:active {
 }
 
 .counter {
-    width: 178px;
-    height: 178px;
-    background: url("../images/counter.png"); 
-    z-index: 1000;
-    float: right;
+    	width: 178px;
+    	height: 178px;
+    	background: url("../images/counter.png"); 
+    	z-index: 1000;
+    	float: right;
 }
 
 .counter p {
-    margin: 41% auto;
-    text-align: center;
-    color: #fff;
-    font-size: 24px;
-    z-index: 1000;
+    	margin: 41% auto;
+    	text-align: center;
+    	color: #fff;
+    	font-size: 24px;
+    	z-index: 1000;
 }
 
 .image {
@@ -313,7 +313,7 @@ input:active {
 }
 
 .drop-target {
-  background: rgba( 255, 255, 255, 0.45 );
+  	background: rgba( 255, 255, 255, 0.45 );
 }
 
 /*--------------------------- */
