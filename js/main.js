@@ -25,7 +25,7 @@ $(document).ready(function () {
 	// defining container / don´t use jquery for defining container as interact doesn´t support it
 	var container = document.getElementById('container');
 	//initialize counter points
-    	var counter = 0;
+    var counter = 0;
 	//initialize counter sticks
 	var counterSticks = 0;
 	var images;
@@ -395,6 +395,9 @@ $(document).ready(function () {
 		$('#intro').remove();
 		$('#story').remove();
 		$('#options').hide();
+		counter = 0;
+		counterSticks = 0;
+		$('.counter p').text(counter);
 		setGamePlan();
 		// lowering sound volume of Introsound
 		audioFade();
@@ -415,9 +418,6 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/	
 	// resetting the game plan and starting the game
 	function refresh() {
-		counter = 0;
-		counterSticks = 0;
-		$('.counter p').text(counter);
 		$('#statistics').hide();
 		$('.image').remove();
 		$('#centertext').show();
