@@ -44,6 +44,11 @@ h3 {
 	margin: 10px auto 0px;
 }
 
+h4 {
+	margin-bottom: 0.6em;
+	color: black;
+}
+
 /*--------------------------- */
 /* HEADER
 /*--------------------------- */
@@ -135,22 +140,45 @@ h3 {
 	margin-top: 46%;
 	margin-left: auto;
 	margin-right: auto;
-    	text-align: center;
-    	color: #fff;
-    	font-size: 10px;
-    	z-index: 1000;
+    text-align: center;
+    color: #fff;
+   	font-size: 10px;
+    z-index: 1000;
+}
+
+#player1-text {
+	margin-top: 43%;
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+}
+
+#player2-text {
+	margin-left: auto;
+	margin-right: auto;
+    text-align: center;
+    color: #fff;
+    font-size: 10px;
+    z-index: 1000;
+}
+
+.gray {
+	color: #505050 !important;
 }
 
 .center-area {
-    	width: 668px;
-    	height: 178px;
-    	float: left;
+ 	width: 668px;
+    height: 178px;
+    float: left;
 	text-align: center;
 }
 
 #centertext {
 	max-width: 100%;
-	padding: 70px 40px 30px;
+	margin: 50px auto;
 	color: #fafafa;
 }
 
@@ -163,18 +191,16 @@ h3 {
 /* BUTTONS
 /*--------------------------- */
 button {
-	background-color:transparent;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
+	background-color: transparent;
 	border-radius: 0px;
-	display:inline-block;
-	cursor:pointer;
-	color:#ffffff;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
 	padding: 0px;
 	text-decoration:none;
 	border: 0; 
 	text-transform: uppercase;
-	cursor:pointer;
+	cursor: pointer;
 	outline: none;
 }
 
@@ -200,18 +226,25 @@ button {
 }
 
 .button-change-box {
-	width: 40px;
-	margin: 40px auto 0;
+	width: 40px;	
 }
 
-#btn-change {
+.s-change {
+	margin: 40px auto 0;	
+}
+
+.m-change {
+	margin: 32px auto 0;
+}
+
+.btn-change {
 	background: url("../images/icon_x.png");
 	width: 40px;
 	height: 40px;
 	text-align: center;
 }
 
-#btn-change:hover {
+.btn-change:hover {
 	background: url("../images/icon_x_on.png");
 }
 
@@ -275,6 +308,7 @@ input:active {
 	height: 100%;
 	position: relative;
 }
+
 #options:before {
 	content: "";
 	position: absolute;
@@ -285,7 +319,6 @@ input:active {
 	right: 0;
 	background: url("../images/opt_sticks.jpg");
 	opacity: 0.5;
-	filter: alpha(opacity=50);
 }
 
 .centered {
@@ -293,19 +326,25 @@ input:active {
 }
 
 .counter {
-    	width: 178px;
-    	height: 178px;
-    	background: url("../images/counter.png"); 
-    	z-index: 1000;
-    	float: right;
+    width: 178px;
+	height: 178px;
+	background: url("../images/counter.png"); 
+	z-index: 1000;
+	float: right;
+	text-align: center;
 }
 
-.counter p {
-    	margin: 41% auto;
-    	text-align: center;
-    	color: #fff;
-    	font-size: 24px;
-    	z-index: 1000;
+#point-counter {
+	margin: 41% auto 0;
+	font-size: 24px;
+	color: #fff;
+}
+
+#round-counter {
+	margin-top: 20%;
+	text-align: center;
+	font-size: 12px;
+	color: black;
 }
 
 .image {
@@ -314,6 +353,18 @@ input:active {
 
 .drop-target {
   	background: rgba( 255, 255, 255, 0.45 );
+}
+
+/* for mouse event */
+.tap-target:hover {
+	border: 1px dotted black;
+	z-index: 2000;
+}
+
+/* for touch event */
+.tap-target:hover {
+	border: 1px dotted black;
+	z-index: 2000;
 }
 
 /*--------------------------- */
@@ -335,11 +386,14 @@ input:active {
 	right: 0;
 	background: url("../images/intro_sticks3.jpg");
 	opacity: 0.5;
-	filter: alpha(opacity=50);
-
 }
 
-.hs-table {
+.col-1 {
+	width: 100%;
+	float: left;
+}
+
+.col-2 {
 	width: 50%;
 	float: left;
 }
@@ -354,17 +408,29 @@ table {
 }
 
 tr {
-	border: 1px solid rgba(247,247,247,1);
+	border: 1px solid rgba( 247, 247, 247, 1 );
 }
 
 th {
-	background: rgba(255,255,255,0.4);
+	background: rgba( 255, 255, 255, 0.4 );
 	text-align: left;
 	padding: 3px 5px;
 }
 
 td {
 	padding: 3px 5px;
+}
+
+#tbl-rounds {
+	max-width: 100%;	
+	color: black;
+	background: rgba(255, 255, 255, 0.0);
+	border: 1px solid black;
+}
+
+#tbl-rounds td {
+	padding: 3px 10px;
+	border: 1px solid black;
 }
 
 ul {
@@ -379,3 +445,79 @@ ul {
 #player-result {
 	padding: 20px;
 }
+
+#multiplayer-result {
+	padding: 20px;
+}
+
+/*--------------------------- */
+/* SWEET ALERT CUSTOMIZATION
+/*--------------------------- */
+.sweet-overlay {
+	background-color: rgba( 0, 0, 0, 0);
+}
+.sweet-alert {
+	background: rgba(255,255,255, 1);
+	color: black;
+	font-family: Montserrat, Arial, sans-serif;
+	width: 420px;
+	height: 420px;
+	padding: 17px;
+	border-radius: 420px;
+	text-align: center;
+	position: fixed;
+	left: 50%;
+	top: 45%;
+	margin-left: -235px;
+	margin-top: -200px;
+}
+
+.sweet-alert h2 {
+	color: black;
+	margin: 70px 0 25px;
+}
+
+.sweet-alert p {
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    font-weight: normal;
+    position: relative;
+    text-align: center;
+	margin: 0 auto;
+	padding: 0;
+    line-height: normal;
+  	max-width: 300px;
+}
+
+ .sweet-alert button {
+	background-color: #fafafa;
+	color: black;
+	border: none;
+	box-shadow: none;
+	font-size: 12px;
+	font-weight: 500;
+	-webkit-border-radius: 4px;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin: 26px 5px 0 5px;
+	cursor: pointer; 
+ }
+	.sweet-alert button:focus {
+	  outline: none;
+	}
+	.sweet-alert button:hover {
+	  background-color: #eeeeee;
+	}
+	.sweet-alert button:active {
+	  background-color: #eeeeee;
+	}
+	.sweet-alert button.cancel {
+	  background-color: #fafafa;
+	}
+		.sweet-alert button.cancel:hover {
+		background-color: #eeeeee;
+		}
+		.sweet-alert button.cancel:active {
+		background-color: #eeeeee;
+		}
