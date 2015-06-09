@@ -3,6 +3,11 @@ body.stop-scrolling {
   overflow: hidden; }
 
 .sweet-overlay {
+  background-color: black;
+  /* IE8 */
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)";
+  /* IE8 */
+  background-color: rgba(0, 0, 0, 0.4);
   position: fixed;
   left: 0;
   right: 0;
@@ -12,18 +17,16 @@ body.stop-scrolling {
   z-index: 10000; }
 
 .sweet-alert {
-  background: rgba(255,255,255, 1);
-  color: black;
-  font-family: Montserrat, sans-serif;
-  width: 420px;
-  height: 420px;
+  background-color: white;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 478px;
   padding: 17px;
-  border-radius: 420px;
+  border-radius: 5px;
   text-align: center;
   position: fixed;
   left: 50%;
-  top: 45%;
-  margin-left: -235px;
+  top: 50%;
+  margin-left: -256px;
   margin-top: -200px;
   overflow: hidden;
   display: none;
@@ -36,28 +39,27 @@ body.stop-scrolling {
       left: 15px;
       right: 15px; } }
   .sweet-alert h2 {
-    color: black;
+    color: #575757;
     font-size: 30px;
     text-align: center;
     font-weight: 600;
     text-transform: none;
     position: relative;
-    margin: 70px 0 25px;
+    margin: 25px 0;
     padding: 0;
     line-height: 40px;
     display: block; }
   .sweet-alert p {
-    color: black;
+    color: #797979;
     font-size: 16px;
     text-align: center;
-    font-weight: normal;
+    font-weight: 300;
     position: relative;
-    text-align: center;
+    text-align: inherit;
     float: none;
-    margin: 0 auto;
+    margin: 0;
     padding: 0;
-    line-height: normal;
-  	max-width: 300px; }
+    line-height: normal; }
   .sweet-alert fieldset {
     border: none;
     position: relative; }
@@ -157,24 +159,24 @@ body.stop-scrolling {
   .sweet-alert.show-input input {
     display: block; }
   .sweet-alert button {
-    background-color: #fafafa;
-    color: black;
+    background-color: #AEDEF4;
+    color: white;
     border: none;
     box-shadow: none;
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 500;
     -webkit-border-radius: 4px;
     border-radius: 5px;
-    padding: 5px 10px;
+    padding: 10px 32px;
     margin: 26px 5px 0 5px;
     cursor: pointer; }
     .sweet-alert button:focus {
       outline: none;
-	}
+      box-shadow: 0 0 2px rgba(128, 179, 235, 0.5), inset 0 0 0 1px rgba(0, 0, 0, 0.05); }
     .sweet-alert button:hover {
-      background-color: #ffffff; }
+      background-color: #a1d9f2; }
     .sweet-alert button:active {
-      background-color: #fafafa; }
+      background-color: #81ccee; }
     .sweet-alert button.cancel {
       background-color: #D0D0D0; }
       .sweet-alert button.cancel:hover {
