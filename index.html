@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8">
 		<title>The Stick Game</title>
-		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
 		<link rel="apple-touch-icon" href="apple-touch-icon.png">
 		<link rel="apple-touch-icon" sizes="76x76" href="apple-touch-icon-76x76.png">
@@ -48,11 +48,20 @@
 						<!-- step 2 -->
 						<div id="options">  
 							<div class="centered">
+								<!-- single player -->
 								<form action="" method="get" id="single-player">
 									<h1>One Player</h1>
 									Enter your name<br>
 									<input type="text" name="player-0" id="player-0" placeholder="name">
 									<button id="btn-single" type="submit">continue</button>
+								</form>
+								<!-- multiplayer -->
+								<form action="" method="get" id="multi-player">
+									<h1>Two Players</h1>
+									Enter your names<br>
+									<input type="text" name="player-1" id="player-1" placeholder="name player 1">
+									<input type="text" name="player-2" id="player-2"placeholder="name player 2">
+									<button id="btn-multi" type="submit">continue</button>
 								</form>
 							</div>
 						</div>
@@ -60,7 +69,26 @@
 						<div id="images" class="images drag-items">                   
 						</div>
 						<!-- step 4 -->
-						<div id="statistics"> 
+						<div id="statistics">
+							<div id="multiplayer-result">
+								<h1> YOUR RECENT RESULTS</h1>
+								<p id="multi-info"></p>
+								<div id="multiplayer-stats">
+									<div class="col-1">
+										<table id="versus">
+										</table>
+									</div>
+									<div class="col-1">
+										<table id="tbl-rounds">
+											<p>Round details</p>
+											<tbody>
+												<tr id="player1-stats"><td id="name1"></td></tr>
+												<tr id="player2-stats"><td id="name2"></td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
 							<div id="player-result">
 								<h1> YOUR RESULT</h1>
 								<ul id="player-stats">
@@ -69,7 +97,7 @@
 							<div id="highscore">
 								<h1> HIGHSCORES</h1>
 								<!-- toplist percentage -->
-								<div class="hs-table">
+								<div class="col-2">
 									<p>Players that got the highest percentage for <br>picking all the sticks of total rounds</p> 
 									<table>
 										<thead><tr><th>rank</th><th>name</th><th>percentage</th><th>of total rounds</th></tr></thead>
@@ -78,7 +106,7 @@
 									</table>
 								</div>
 								<!-- toplist all points --> 
-								<div class="hs-table">
+								<div class="col-2">
 									<p>Players that got the highest amount of <br>average points in total rounds</p>
 									<table>
 										<thead><tr><th>rank</th><th>name</th><th>average points</th><th>in total rounds</th></tr></thead>
@@ -93,8 +121,15 @@
 						<div class="info-area">
 							<div class="singleplayer-box">
 								<p id="player-text"></p>
-								<div class= "button-change-box">
-									<button id="btn-change" type="button"></button>
+								<div class= "button-change-box s-change">
+									<button class="btn-change" type="button"></button>
+								</div>
+							</div>
+							<div class="multiplayer-box">
+								<p id="player1-text"></p>
+								<p id="player2-text"></p>
+								<div class= "button-change-box  m-change">
+									<button class="btn-change" type="button"></button>
 								</div>
 							</div>
 						</div>
@@ -103,10 +138,11 @@
 								<button id="btn-main" class="btn-0" type="button"></button>
 								<button id="btn-skip" type="button"> </button>
 							</div>
-							<p id="centertext">Drag one stick at a time to the bottom area.<br> Pick the sticks thoughtfully, one is evil.</p>
+							<p id="centertext"></p>
 						</div>
 						<div class="counter">
-							<p>0</p>
+							<p id="point-counter">0</p>
+							<p id="round-counter"></p>
 						</div>
 					</div>
 				</div>
