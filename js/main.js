@@ -26,7 +26,7 @@ $(document).ready(function () {
 	// defining container / don´t use jquery for defining container as interact doesn´t support it
 	var container = document.getElementById('container');
 	//initialize counter points
-    var counter = 0;
+    	var counter = 0;
 	//initialize counter sticks
 	var counterSticks = 0;
 	var images;
@@ -111,7 +111,7 @@ $(document).ready(function () {
 	// LOCALSTORAGE
 	/* ------------------------------------------------*/
 	// Retrieving object 'highscores' from local storage
-	 var highscores = JSON.parse(localStorage.getItem('highscores'));
+	var highscores = JSON.parse(localStorage.getItem('highscores'));
 	
 	// checking if there is already any information saved
 	// if no information existing, the object 'highscores' is created
@@ -695,20 +695,20 @@ $(document).ready(function () {
 		// creates array 'multiPlayerStats' containing 
 		// results for the number of rounds recently played by the two multiplayers
 		multiPlayerStats = highscores.scores					
-							.slice(-multiRoundCounter);
+						.slice(-multiRoundCounter);
 
 		// creates array with scores of player 1 
 		player1Stats = multiPlayerStats
-								.filter(function (obj) { return obj.name == player1; })
-								.map(function (obj) { return obj.score; });
+						.filter(function (obj) { return obj.name == player1; })
+						.map(function (obj) { return obj.score; });
 
 		// calculating total sum for player 1
 		player1Total = player1Stats.reduce(function (acc, curr) { return acc + curr; }, 0);
 
 		// creates array with scores of player 2 
 		player2Stats = multiPlayerStats
-								.filter(function (obj) { return obj.name == player2; })
-								.map(function (obj) { return obj.score; });
+						.filter(function (obj) { return obj.name == player2; })
+						.map(function (obj) { return obj.score; });
 
 		// calculating total sum for player 2
 		player2Total = player2Stats.reduce(function (acc, curr) { return acc + curr; }, 0);		
