@@ -26,7 +26,7 @@ $(document).ready(function () {
 	// defining container / don´t use jquery for defining container as interact doesn´t support it
 	var container = document.getElementById('container');
 	//initialize counter points
-    	var counter = 0;
+	var counter = 0;
 	//initialize counter sticks
 	var counterSticks = 0;
 	var images;
@@ -265,6 +265,7 @@ $(document).ready(function () {
 				event.currentTarget.setAttribute('data-evil', true);
 				event.preventDefault();
 				$('.tap-target').removeClass('tap-target');
+				$('.image').addClass('draggable');
 				createDraggables();
 				$('#centertext').html('<h4>' + player + '</h4>Ready to play! Start picking sticks.<br>Drag one stick at a time to the bottom area.<br> Pick the sticks thoughtfully, one is evil.');
 				$('#centertext').fadeIn();
@@ -495,6 +496,7 @@ $(document).ready(function () {
 			$('#round-counter').hide();
 		// multiplayer
 		} else {
+			$('.image').removeClass('draggable');
 			$('#round-counter').show();
 			// switching player for each round
 			if (multiRoundCounter % 2 === 0) {
