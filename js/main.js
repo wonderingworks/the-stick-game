@@ -5,6 +5,23 @@ var home = {};
 
 $(document).ready(function () {
 	
+	// setting height to fit window 
+	function setHeight() {
+		var windowHeight = $(window).height();
+		var containerHeight = $(window).height() - 50;
+		var topzoneHeight = $(window).height() - 228;
+		$('#main').css('height', windowHeight);
+		$('#container').css('height', containerHeight);
+		$('#intro').css('height', topzoneHeight);
+		$('.topzone').css('height', topzoneHeight);
+	}
+	
+	setHeight();
+	
+	$(window).resize(function() {
+		setHeight();
+	});
+	
 	// INTRO
 	/* ------------------------------------------------*/
 	// hiding elements
@@ -25,6 +42,12 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/
 	// defining container / don´t use jquery for defining container as interact doesn´t support it
 	var container = document.getElementById('container');
+	var duringGame = false;
+	var orientation;
+	var topzoneWidth;
+	var topzoneHeight;
+	var altX;
+	var dropLine;
 	//initialize counter points
 	var counter = 0;
 	//initialize counter sticks
@@ -88,15 +111,18 @@ $(document).ready(function () {
 	}
 	
 	var iOSDevice = isIOS();
+	// checking device orientation, landscape or portrait
+	orientation = Math.abs(window.orientation) == 90 ? 'landscape' : 'portrait';
 	
 	// needed because on iOS preload and autoplay are disabled. 
 	// on iOS no data is loaded until the user initiates it.
 	if (iOSDevice) {
 		$('#content').hide();
-		$('#iOSIntro').append('<img src="images/intro-0.png">');
 		$('#iOSIntro').show();
 	} else {
 		$('#iOSIntro').remove();
+		// adding border on desktop devices
+		$('#main').addClass('desktop');
 		soundIntro.play();
 	}
 	
@@ -106,6 +132,39 @@ $(document).ready(function () {
 		$('#iOSIntro').remove();
 		$('#content').show();
 		soundIntro.play();
+	});
+	
+	// if window resizes during ongoing game refresh game plan
+	$(window).resize(function() {
+		if (duringGame) {
+			refresh();
+		}
+	});
+	
+	// if device orientation changes 
+	$(window).on('orientationchange', function(event) {
+		// if ongoing game and device's orientation differs from when game plan was set
+		// user can turn device or refresh game plan
+		// preventing alert when turning back to original position
+		if (duringGame && (orientation !== window.orientation) ) {
+			swal({
+				title: 'Orientation changed',
+				text: 'This may cause problems during a game. Please change the orientation of your device back again or click the refresh button to start over.',
+				confirmButtonColor: '#fafafa',
+				confirmButtonText: 'Refresh', 
+				showCancelButton: true, 
+				cancelButtonColor: '#fafafa', 
+				cancelButtonText: 'Ok', 
+				closeOnConfirm: true,   
+				closeOnCancel: true
+			}, 
+				function(isConfirm) {
+					if (isConfirm) {
+						refresh();
+					} 
+				}
+			);
+		}
 	});
 	
 	// LOCALSTORAGE
@@ -208,12 +267,14 @@ $(document).ready(function () {
 	function getRandomX() {
 		// Math.floor() to return the largest integer less than or equal to a given number.
 		// Math.random() to return a random number between 0 (inclusive) and given number (exclusive), + 1 to include it
-		return Math.floor(Math.random() * 1024) + 1;
+		return Math.floor(Math.random() * topzoneWidth) + 1;
 	}
+	
 	// defining random y position
 	function getRandomY() {
-		return Math.floor(Math.random() * 540) + 1;
+		return Math.floor(Math.random() * topzoneHeight) + 1;	
 	}
+	
 	// helper function to get current postioon
 	function dragMoveListener(event) {
 		var target = event.target;
@@ -230,6 +291,7 @@ $(document).ready(function () {
 		target.setAttribute('data-x', x);
 		target.setAttribute('data-y', y);
 	}
+	
 	// defining dropzone	
 	function defineDropzone() {
 		// enable draggables to be dropped into this
@@ -255,7 +317,8 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/
 	// target elements with the 'tap-target' class
 	function createTapEvil() {
-		
+		duringGame = true;
+		orientation = window.orientation;
 		interact('.tap-target')
 			.on('tap', function (event) {
 				event.currentTarget.classList.toggle('tap-highlight');
@@ -285,7 +348,9 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/
 	// target elements with the 'draggable' class
 	function createDraggables() {
-		
+			duringGame = true;
+			orientation = window.orientation;
+			setHeight();
 			interact('.draggable')
 				.draggable({
 				// enable inertial throwing
@@ -313,7 +378,7 @@ $(document).ready(function () {
 				onend: function (event) {	
 					var stick = $(event.target);
 					//dropzone top > 540 - 5 for tolerance
-					if (stick.position().top > 535) {
+					if (stick.position().top > dropLine) {
 						stick.removeClass('draggable');
 
 						// evil stick picked
@@ -392,6 +457,7 @@ $(document).ready(function () {
 							$('.draggable').removeClass('draggable');
 							// 1 second delay to play sound, show points and alert
 							setTimeout(function () {
+								var duringGame = false;
 								// changing counter text
 								$('#point-counter').text(counterSticks);
 								var soundGood = new Audio('media/sound_good.mp3');
@@ -484,8 +550,23 @@ $(document).ready(function () {
 	// defining dragstart, dragmove, dragend events		
 	function setGamePlan() {
 		// adding images
+		
 		addImages();	
 		var evil;
+		// getting current width and height
+		topzoneWidth = $('.topzone').width();
+		topzoneHeight = $('.topzone').height();
+		// top borderline of dropzone, - 5 for tolerance;
+		dropLine =  topzoneHeight - 5;
+	
+		if (topzoneWidth < 800) {
+			altX = topzoneWidth / 5;
+		} else {
+			altX = topzoneWidth / 4;
+		}
+	
+		home.topzoneWidth = topzoneWidth;
+		home.topzoneHeight = topzoneHeight;
 		
 		// singleplayer
 		if (singlePlayer) {
@@ -518,7 +599,6 @@ $(document).ready(function () {
 		$('.image').load(function () {
 							 
 			var images = $('.image');
-			
 			// looping through all elements and checking if current element is 'evil'
 			// attaching attribute 'evil' (true or false) to every element
 			for (var i = 0; i < images.length; i++) {
@@ -545,7 +625,7 @@ $(document).ready(function () {
 				// assures that elements are positioned 
 				// within 'topzone's left and top edge 
 				// 300 is used to prevent that several elements are placed along the left edge
-				img.style.left =  ( (x >= 0) ? x : 300 ) + 'px';
+				img.style.left =  ( (x >= 0) ? x : altX ) + 'px';
 				img.style.top =  ( (y >= 0) ? y : 0 ) + 'px';
 			}		
 			// singleplayer
