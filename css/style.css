@@ -121,7 +121,7 @@ h4 {
 .info-area {
 	width: 178px;
 	height: 178px;
-    float: left;
+	float: left;
 	color: rgba(255,255,255, 0.6);
 }
 
@@ -145,29 +145,29 @@ h4 {
 	margin-top: 46%;
 	margin-left: auto;
 	margin-right: auto;
-    text-align: center;
-    color: #fff;
+	text-align: center;
+	color: #fff;
    	font-size: 10px;
-    z-index: 1000;
+   	z-index: 1000;
 }
 
 #player1-text {
 	margin-top: 43%;
 	margin-left: auto;
 	margin-right: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 10px;
-    z-index: 1000;
+	text-align: center;
+	color: #fff;
+	font-size: 10px;
+	z-index: 1000;
 }
 
 #player2-text {
 	margin-left: auto;
 	margin-right: auto;
-    text-align: center;
-    color: #fff;
-    font-size: 10px;
-    z-index: 1000;
+	text-align: center;
+	color: #fff;
+	font-size: 10px;
+	z-index: 1000;
 }
 
 .gray {
@@ -176,8 +176,8 @@ h4 {
 
 .center-area {
  	width: 668px;
-    height: 178px;
-    float: left;
+ 	height: 178px;
+ 	float: left;
 	text-align: center;
 }
 
@@ -207,6 +207,7 @@ button {
 	text-transform: uppercase;
 	cursor: pointer;
 	outline: none;
+	font-family: Montserrat, Arial, sans-serif;
 }
 
 #btn-main {
@@ -338,7 +339,7 @@ input:active {
 }
 
 .counter {
-    width: 178px;
+	width: 178px;
 	height: 178px;
 	background: url("../images/counter.png"); 
 	z-index: 1000;
@@ -491,15 +492,15 @@ ul {
 }
 
 .sweet-alert p {
-    color: black;
-    font-size: 16px;
-    text-align: center;
-    font-weight: normal;
-    position: relative;
-    text-align: center;
+	color: black;
+	font-size: 16px;
+	text-align: center;
+	font-weight: normal;
+	position: relative;
+	text-align: center;
 	margin: 0 auto;
 	padding: 0;
-    line-height: normal;
+	line-height: normal;
   	max-width: 300px;
 }
 
