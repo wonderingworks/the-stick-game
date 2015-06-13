@@ -207,6 +207,7 @@ button {
 	text-transform: uppercase;
 	cursor: pointer;
 	outline: none;
+	font-family: Montserrat, Arial, sans-serif;
 }
 
 #btn-main {
