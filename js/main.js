@@ -5,21 +5,24 @@ var home = {};
 
 $(document).ready(function () {
 	
-	// checking if device is an iOS device (true/false)
-	function isIPhone() {
-		return (navigator.platform.indexOf('iPhone') !== -1);
-	}
+	// checking if device is an iOS device (true/false)	
+	var isIPhone = navigator.userAgent.indexOf('iPhone') != -1;
 	
 	// setting height to fit window 
 	function setHeight() {
-		if (!isIPhone) {
+		if (!isIPhone ) {
 			var windowHeight = $(window).height();
-			var containerHeight = $(window).height() - 50;
-			var topzoneHeight = $(window).height() - 228;
-			$('#main').css('height', windowHeight);
-			$('#container').css('height', containerHeight);
-			$('#intro').css('height', topzoneHeight);
-			$('.topzone').css('height', topzoneHeight);
+			var windowWidth = $(window).width();
+			// only enable minimizing
+			if ((windowWidth >= 1024 && windowHeight < 768) || 
+				(windowWidth >= 768 && windowHeight < 1024)) { 
+					var containerHeight = $(window).height() - 50;
+					var topzoneHeight = $(window).height() - 228;
+					$('#main').css('height', windowHeight);
+					$('#container').css('height', containerHeight);
+					$('#intro').css('height', topzoneHeight);
+					$('.topzone').css('height', topzoneHeight);
+			}
 		}
 	}
 	
