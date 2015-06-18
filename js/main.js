@@ -91,14 +91,13 @@ $(document).ready(function () {
 	// intro sound
 	var soundIntro = new Audio('media/sound_intro.mp3');
 	soundIntro.loop = true;
-	soundIntro.muted = false;
 	// volume
 	soundIntro.volume = 1;
 	home.soundIntro = soundIntro;
 	// defining sound variable for soundtoggle of draggables elements
 	// true = sound on, false = sound off
 	var soundOn = true;
-
+	var soundIntroOn = true;
 	// fading Introsound to volume 0.2
 	function audioFade() {
 		var interval = setInterval(function () {
@@ -133,7 +132,9 @@ $(document).ready(function () {
 		$('#iOSIntro').remove();
 		// adding border on desktop devices
 		$('#main').addClass('desktop');
-		soundIntro.play();
+		if (soundIntroOn) {
+			soundIntro.play();
+		}
 	}
 	
 	// when clicking on the screen
@@ -141,7 +142,9 @@ $(document).ready(function () {
 	$('#iOSIntro').click(function () {
 		$('#iOSIntro').remove();
 		$('#content').show();
-		soundIntro.play();
+		if (soundIntroOn) {
+			soundIntro.play();
+		}
 	});
 	
 	// if window resizes during ongoing game refresh game plan
@@ -467,7 +470,7 @@ $(document).ready(function () {
 							$('.draggable').removeClass('draggable');
 							// 1 second delay to play sound, show points and alert
 							setTimeout(function () {
-								var duringGame = false;
+								duringGame = false;
 								// changing counter text
 								$('#point-counter').text(counterSticks);
 								var soundGood = new Audio('media/sound_good.mp3');
@@ -940,17 +943,18 @@ $(document).ready(function () {
 	//sound icon (on-off toggle)
 	$('#ic-sound').click(function () {
 		// toggle (true/false) for soundOn of draggable elements
-		soundOn = !soundOn;		
+		soundOn = !soundOn;
+		soundIntroOn = !soundIntroOn;
 		var button = $(this);
 		//toggle for introSound
 		if (button.hasClass('sound-on')) {
-			soundIntro.muted = true;
 			button.removeClass('sound-on').addClass('sound-off');
 			$('#sound-img').attr('src', 'images/icon_mute_on.png');
+			soundIntro.pause();
 		} else {
-			soundIntro.muted = false;
 			button.removeClass('sound-off').addClass('sound-on');
 			$('#sound-img').attr('src', 'images/icon_mute_off.png');
+			soundIntro.play();
 		}		
 	}); 
 	
@@ -965,7 +969,8 @@ $(document).ready(function () {
 	});
 	
 	// stats icon -> showing player statistics and highscore toplists
-	$('#ic-stats').click(function () { 		
+	$('#ic-stats').click(function () {
+		duringGame = false;
 		$('#statistics').hide();
 		$('.image').remove();
 		$('#images').hide();
