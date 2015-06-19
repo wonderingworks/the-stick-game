@@ -11,8 +11,6 @@ body, p {
 }
 
 #main {
-	width: 1024px; 
-	height: 768px; 
 	margin: 0 auto;
 	position: relative;
 }
@@ -20,6 +18,9 @@ body, p {
 #iOSIntro {
 	width: 100%;
 	height: 100%;
+}
+
+#iOSIntro {
 	background: url("../images/intro_ios.jpg");
 }
 
@@ -38,13 +39,13 @@ a:hover, a:focus, a:visited {
 }
 
 h1 {
-   	font-size: 20px;
+   	font-size: 1.25em;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
 
 h2 {
-   	font-size: 16px;
+   	font-size: 1em;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 }
@@ -63,7 +64,7 @@ h4 {
 /*--------------------------- */
 .headerzone {
 	background-color: #fff;
-	width: 1024px;
+	width: 100%;
 	height: 50px;
 }
 
@@ -95,54 +96,43 @@ h4 {
 /*--------------------------- */
 /* CONTAINER
 /*--------------------------- */
-
 #container {
 	background: url("../images/back_grey.jpg");
-	width: 1024px;
-	height: 718px;
+	width: 100%;
 	position: relative;
 }
 
 .topzone {
-	background: rgba( 255, 255, 255, 0.75 );
-	width: 1024px;
-	height: 540px;
+	background: rgba(255, 255, 255, 0.75 );
+	width: 100%;
 	position: relative;
 	z-index: 100;
 }
 
 .dropzone {
-	width: 1024px;
-	height: 178px;
+	width: 100%;
 	position: relative;
-	background: rgba( 255, 255, 255, 0.35 );
+	background: rgba(255, 255, 255, 0.35 );
 }
 
 .info-area {
-	width: 178px;
-	height: 178px;
 	float: left;
-	color: rgba(255,255,255, 0.6);
+	color: rgba(255, 255, 255, 0.6);
 }
 
 .singleplayer-box {
-	width: 178px;
-	height: 178px;
 	background: url("../images/player.png");
 	z-index: 1000;
 	float: left;
 }
 
 .multiplayer-box {
-	width: 178px;
-	height: 178px;
 	background: url("../images/player2.png");
 	z-index: 1000;
 	float: left;
 }
 
 #player-text {
-	margin-top: 46%;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -151,17 +141,7 @@ h4 {
    	z-index: 1000;
 }
 
-#player1-text {
-	margin-top: 43%;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	color: #fff;
-	font-size: 10px;
-	z-index: 1000;
-}
-
-#player2-text {
+#player1-text, #player2-text{
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
@@ -175,8 +155,6 @@ h4 {
 }
 
 .center-area {
- 	width: 668px;
- 	height: 178px;
  	float: left;
 	text-align: center;
 }
@@ -283,6 +261,8 @@ input:active {
 }
 
 /*--------------------------- */
+/* DIVS
+/*--------------------------- */
 #intro {
 	position: absolute;
 	background: black;
@@ -339,8 +319,6 @@ input:active {
 }
 
 .counter {
-	width: 178px;
-	height: 178px;
 	background: url("../images/counter.png"); 
 	z-index: 1000;
 	float: right;
@@ -365,7 +343,7 @@ input:active {
 }
 
 .drop-target {
-  	background: rgba( 255, 255, 255, 0.45 );
+  	background: rgba(255, 255, 255, 0.45 );
 }
 
 /* for mouse event */
@@ -412,20 +390,18 @@ input:active {
 }
 
 table {
- 	margin: 20px 0;
-	border-collapse: collapse; 
-	text-align: left; 
-	max-width: 480px;	
+	border-collapse: collapse;
+	text-align: left;
 	color: white;
 	background: #bbb;
 }
 
 tr {
-	border: 1px solid rgba( 247, 247, 247, 1 );
+	border: 1px solid rgba(247, 247, 247, 1 );
 }
 
 th {
-	background: rgba( 255, 255, 255, 0.4 );
+	background: rgba(255, 255, 255, 0.4 );
 	text-align: left;
 	padding: 3px 5px;
 }
@@ -448,7 +424,7 @@ td {
 
 ul {
 	list-style-type: none;
-	padding:0;
+	padding: 0;
 }
 
 #highscore {
@@ -536,95 +512,641 @@ ul {
 		background-color: #eeeeee;
 		}
 
-/*--------------------------- */
+
+/*------------------------------------------------------  */
+/* DESKTOP AND IPAD LANDSCAPE
+/*------------------------------------------------------  */
+@media only screen and (min-device-width : 1224px),
+only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+
+	#main {
+		width: 1024px; 
+		height: 768px; 
+	}
+	
+	/* CONTAINER
+	/*--------------------------- */
+	
+	#container {
+		height: 718px;
+	}
+
+	.topzone {
+		height: 540px;
+	}
+
+	.dropzone {
+		height: 178px;
+	}
+
+	.info-area {
+		width: 178px;
+		height: 178px;
+	}
+
+	.singleplayer-box {
+		width: 178px;
+		height: 178px;
+	}
+
+	.multiplayer-box {
+		width: 178px;
+		height: 178px;
+	}
+
+	#player-text {
+		margin-top: 46%;
+	}
+
+	#player1-text {
+		margin-top: 43%;
+	}
+
+	.center-area {
+		width: 668px;
+		height: 178px;
+	}
+
+	#centertext {
+		margin: 50px auto;
+	}
+
+	.counter {
+		width: 178px;
+		height: 178px;
+	}
+
+	/* STATISTICS
+	/*--------------------------- */
+
+	table {
+		margin: 20px 0;
+		max-width: 480px;
+	}
+
+/* End Desktop and Ipad Landscape */}
+
+/*---------------------------------------------------- */
 /* IPAD PORTRAIT
-/*--------------------------- */
+/*---------------------------------------------------- */
 @media only screen 
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) 
 and (orientation : portrait) { 
 
-#main {
-	width: 768px; 
-	height: 1024px; 
-}
-	
-#iOSIntro {
-	background: url("../images/intro_ios_portrait.jpg");
-}
+	#main {
+		width: 768px; 
+		height: 1024px; 
+	}
 
-/*--------------------------- */
-/* HEADER
-/*--------------------------- */
-.headerzone {
-	width: 100%;
-}
+	#iOSIntro {
+		background: url("../images/intro_ios_portrait.jpg");
+	}
 
-/*--------------------------- */
-/* CONTAINER
-/*--------------------------- */
+	/* HEADER
+	/*--------------------------- */
+	.headerzone {
+		width: 100%;
+	}
 
-#container {
-	background: url("../images/back_grey_portrait.jpg");
-	width: 100%;
-	height: 974px;
-	position: relative;
-}
+	/* CONTAINER
+	/*--------------------------- */
 
-.topzone {
-	width: 100%;
-	height: 796px;
-}
+	#container {
+		background: url("../images/back_grey_portrait.jpg");
+		width: 100%;
+		height: 974px;
+		position: relative;
+	}
 
-.dropzone {
-	width: 100%;
-	height: 178px;
-}
+	.topzone {
+		width: 100%;
+		height: 796px;
+	}
 
-.center-area {
- 	width: 412px;
-}
+	.dropzone {
+		width: 100%;
+		height: 178px;
+	}
 
-/*--------------------------- */
-#top-image {
-	padding-top: 20%;
-}
+	.center-area {
+		width: 412px;
+	}
 
-#story {
-	background: url("../images/intro_story_portrait.jpg");
-}
-	
-.storytext {
-	padding: 120px 200px;
-}
+	/* DIVS
+	/*--------------------------- */
+	#top-image {
+		padding-top: 20%;
+	}
 
-#options:before {
-	background: url("../images/opt_sticks_portrait.jpg");
-}
+	#story {
+		background: url("../images/intro_story_portrait.jpg");
+	}
 
-/*--------------------------- */
-/* STATISTICS
-/*--------------------------- */
-	
-#statistics:before {
-	background: url("../images/intro_story_portrait.jpg");
-}
+	.storytext {
+		padding: 120px 200px;
+	}
 
-.col-1, 
-.col-2 {
-	width: 100%;
-	float: left;
-}
+	#options:before {
+		background: url("../images/opt_sticks_portrait.jpg");
+	}
 
-table {
-	max-width: 100%;
-	min-width: 500px;
-}
+	/* STATISTICS
+	/*--------------------------- */
 
-#highscore,
-#player-result,
-#multiplayer-result {
-	padding: 20px 50px;
-}
+	#statistics:before {
+		background: url("../images/intro_story_portrait.jpg");
+	}
+
+	.col-1, 
+	.col-2 {
+		width: 100%;
+		float: left;
+	}
+
+	table {
+		max-width: 100%;
+		min-width: 500px;
+	}
+
+	#highscore,
+	#player-result,
+	#multiplayer-result {
+		padding: 20px 50px;
+	}
 	
 /* End Ipad Portrait */ }
+
+/*---------------------------------------------------- */
+/* IPHONE
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (device-aspect-ratio: 2/3),
+only screen and (min-device-width: 320px) and (max-device-width: 568px) and (device-aspect-ratio: 40/71),
+only screen and (min-device-width: 375px) and (max-device-width: 667px), 
+only screen and (min-device-width: 414px) and (max-device-width: 736px){
+
+	body, p {
+		  font-size: 10px;
+	}
+
+	h1 {
+		  font-size: 1.3em;
+	}
+
+	#main {
+		width: 100%; 
+		height: 100%; 
+	}
+
+	/* HEADER
+	/*--------------------------- */
+	.headerzone {
+		width: 100%;
+	}
+
+	.logo {
+		padding: 5px;
+		max-width: 50px;
+		font-size: 12px;
+	}
+
+	.icons ul li {
+		  padding: 5px 0px;
+	}
+
+	/* CONTAINER
+	/*--------------------------- */
+
+	#container {
+		background-repeat: no-repeat;
+		background-size: cover;
+		width: 100%;
+		position: relative;
+	}
+
+	.topzone {
+		width: 100%;
+	}
+
+	.dropzone {
+		width: 100%;
+		height: 100px;
+	}
+
+	.center-area {
+		height: 100px;
+	}
+
+	.info-area {
+		width: 100px;
+		height: 100px;
+	}
+
+	.singleplayer-box, .multiplayer-box  {
+		width: 100px;
+		height: 100px;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+
+	.counter {
+		width: 100px;
+		height: 100px;
+		background-repeat: no-repeat;
+		background-size: 100% 100%;
+	}
+
+	#point-counter {
+		margin: 40% auto 0;
+		font-size: 16px;
+	}
+
+	#round-counter {
+		margin-top: 17%;
+		font-size: 10px;
+	}
+
+	#player-text {
+		margin-top: 10%;
+	}
+
+	#player1-text {
+		margin-top: 10%;
+	}
+
+	#player2-text {
+		margin-top: 53%;
+	}
+
+	#centertext {
+		margin: 10% auto;
+		font-size: 0.9em;
+	}
+
+	#btn-main {
+		margin: 10px 0 0;
+	}	
+
+	.btn-change {
+		display: none;
+	}
+	
+	/* DIVS
+	/*--------------------------- */
+
+	#story {
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.storytext {
+		padding: 30px 50px;
+	}
+
+	#options:before {
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.centered {
+		  padding: 30px 50px;
+	}
+
+	/* FORMS
+	/*--------------------------- */
+	form {
+		margin-bottom: 20px;
+	}
+
+	input {
+		margin: 10px 0 10px; 
+	}
+
+	/* STATISTICS
+	/*--------------------------- */
+
+	#statistics:before {
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	table {
+		font-size: 9px
+	}
+
+	#highscore,
+	#player-result,
+	#multiplayer-result {
+		padding: 20px 20px 0px;
+	}
+	
+	.col-1, 
+	.col-2 {
+		margin: 5px 0 10px;
+	}
+
+	/* SWEET ALERT CUSTOMIZATION
+	/*--------------------------- */
+	.sweet-alert {
+		width: 300px;
+		height: 300px;
+		padding: 0px;
+		border-radius: 300px;
+		margin-left: -150px;
+		margin-top: -150px;
+	}
+
+	.sweet-alert h2 {
+		font-size: 16px;
+		margin: 40px 60px 20px;
+		line-height: 1.2em;
+	}
+
+	.sweet-alert p {
+		font-size: 10px;
+		max-width: 165px;
+	}
+
+	.sweet-alert button {
+		font-size: 10px;
+		margin: 16px 5px 0 5px;
+
+	 }
+/*---------------------------------------------------- */
+/* IPHONE LANDSCAPE
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3),
+only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71),
+only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 3) {	
+
+	#iOSIntro {
+		background: url("../images/intro_ios_landscape_iphone.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	.storytext p, .storytext h1 {
+		  font-size: 9px;
+	}
+	
+	table {
+		max-width: 100%;
+		min-width: 200px;
+		font-size: 9px;
+		margin: 5px 5px 0 0;
+	}
+	
+/* End Iphone Landscape */ }
+/*---------------------------------------------------- */
+/* IPHONE PORTRAIT
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 2/3),
+only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71),
+only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3) {
+	
+		
+	#top-image {
+		padding-top: 20%;
+	}
+	
+	#iOSIntro {
+		background: url("../images/intro_ios_portrait_iphone.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	.storytext p, .storytext h1 {
+		  font-size: 12px;
+	}
+	
+	#container {
+		background: url("../images/back_grey_portrait.jpg");
+	}
+	
+	#story {
+		background: url("../images/intro_story_portrait.jpg");
+	}
+	
+	#options:before {
+		background: url("../images/opt_sticks_portrait.jpg");
+	}
+	
+	#statistics:before {
+		background: url("../images/intro_story_portrait.jpg");
+	}
+	
+	.col-1, 
+	.col-2 {
+		width: 100%;
+		float: left;
+	}
+
+	table {
+		max-width: 100%;
+		min-width: 280px;
+	}
+	
+/* End Iphone Portrait */ }
+	
+/*---------------------------------------------------- */
+/* IPHONE 4/4S LANDSCAPE
+/*---------------------------------------------------- */
+@media only screen 
+  and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+
+	#main {
+		width: 480px; 
+		height: 320px; 
+	}
+
+	#container {
+		height: 270px;
+	}
+
+	.topzone {
+		height: 170px;
+	}
+	
+	.center-area {
+		width: 280px;
+	}
+	
+/* End Iphone Landscape */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 4/4S PORTRAIT
+/*---------------------------------------------------- */
+@media only screen 
+and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+
+	#main {
+		width: 320px; 
+		height: 480px; 
+	}
+
+
+	#container {
+		height: 430px;
+	}
+
+	.topzone {
+		height: 330px;
+	}
+
+	.center-area {
+		width: 120px;
+	}
+	
+/* End 4/4S Iphone Portrait */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 5/5S LANDSCAPE
+/*---------------------------------------------------- */
+@media only screen 
+and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71){
+
+	#main {
+		width: 568px; 
+		height: 320px; 
+	}
+
+	#container {
+		height: 270px;
+	}
+
+	.topzone {
+		height: 170px;
+	}
+	
+	.center-area {
+		width: 368px;
+	}
+	
+/* End Iphone 5/5S Landscape */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 5/5S PORTRAIT
+/*---------------------------------------------------- */
+@media only screen 
+and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) and (device-aspect-ratio: 40/71) {
+
+	#main {
+		width: 320px; 
+		height: 568px; 
+	}
+
+	#container {
+		height: 518px;
+	}
+
+	.topzone {
+		height: 418px;
+	}
+	
+	.center-area {
+		width: 120px;
+	}
+	
+/* End Iphone 5/5S Portrait */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 6 LANDSCAPE
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+
+	#main {
+		width: 667px; 
+		height: 375px; 
+	}
+
+	#container {
+		height: 325px;
+	}
+
+	.topzone {
+		height: 225px;
+	}
+	
+	.center-area {
+		width: 467px;
+	}
+	
+/* End Iphone 6 Landscape */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 6 PORTRAIT
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+
+	#main {
+		width: 375px; 
+		height: 667px; 
+	}
+
+	#container {
+		height: 617px;
+	}
+
+	.topzone {
+		height: 517px;
+	}
+	
+	.center-area {
+		width: 175px;
+	}
+	
+/* End Iphone 6 Portrait */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 6 PLUS LANDSCAPE
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 3) {
+
+	#main {
+		width: 736px; 
+		height: 414px; 
+	}
+
+	#container {
+		height: 364px;
+	}
+
+	.topzone {
+		height: 264px;
+	}
+	
+	.center-area {
+		width: 536px;
+	}
+	
+	.storytext {
+		padding: 50px 200px;
+	}
+	
+/* End Iphone 6+ Landscape */ }
+
+/*---------------------------------------------------- */
+/* IPHONE 6 PLUS PORTRAIT
+/*---------------------------------------------------- */
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 3) {
+
+	#main {
+		width: 414px; 
+		height: 736px; 
+	}
+
+	#container {
+		height: 686px;
+	}
+
+	.topzone {
+		height: 586px;
+	}
+	
+	.center-area {
+		width: 214px;
+	}
+	
+/* End Iphone 6+ Portrait */ }

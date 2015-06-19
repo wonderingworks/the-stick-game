@@ -6,31 +6,40 @@ var home = {};
 $(document).ready(function () {
 	
 	// checking if device is an iOS device (true/false)	
-	var isIPhone = navigator.userAgent.indexOf('iPhone') != -1;
-	
-	// setting height to fit window 
+	var isIPhone = navigator.userAgent.indexOf('iPhone') !== -1;
+
+	// setting height to fit window for ipad and desktop and iPhone
 	function setHeight() {
-		if (!isIPhone ) {
-			var windowHeight = $(window).height();
-			var windowWidth = $(window).width();
+		var windowHgt = $(window).height();
+		var windowWdt = $(window).width();
+		var containerHgt;
+		var topzoneHgt;
+		if (!isIPhone) {
 			// only enable minimizing
-			if ((windowWidth >= 1024 && windowHeight < 768) || 
-				(windowWidth >= 768 && windowHeight < 1024)) { 
-					var containerHeight = $(window).height() - 50;
-					var topzoneHeight = $(window).height() - 228;
-					$('#main').css('height', windowHeight);
-					$('#container').css('height', containerHeight);
-					$('#intro').css('height', topzoneHeight);
-					$('.topzone').css('height', topzoneHeight);
+			if ((windowWdt >= 1024 && windowHgt < 768) || (windowWdt >= 768 && windowHgt < 1024)) {
+				containerHgt = $(window).height() - 50;
+				topzoneHgt = $(window).height() - 228;
+				$('#main').css('height', windowHgt);
+				$('#container').css('height', containerHgt);
+				$('#intro').css('height', topzoneHgt);
+				$('.topzone').css('height', topzoneHgt);
 			}
+		} 
+		
+		if (isIPhone) {
+			containerHgt = $(window).height() - 50;
+			topzoneHgt = $(window).height() - 150;
+			var centerAreaWidth = $(window).width() - 200;
+			$('#main').css('height', windowHgt);
+			$('#main').css('width', windowWdt);
+			$('#container').css('height', containerHgt);
+			$('#intro').css('height', topzoneHgt);
+			$('.topzone').css('height', topzoneHgt);
+			$('.center-area').css('width', centerAreaWidth);
 		}
 	}
 	
 	setHeight();
-	
-	$(window).resize(function() {
-		setHeight();
-	});
 	
 	// INTRO
 	/* ------------------------------------------------*/
@@ -147,8 +156,10 @@ $(document).ready(function () {
 		}
 	});
 	
-	// if window resizes during ongoing game refresh game plan
+	// if window resizes set height
+	// during ongoing game also refresh game plan	
 	$(window).resize(function() {
+		setHeight();
 		if (duringGame) {
 			refresh();
 		}
@@ -156,6 +167,7 @@ $(document).ready(function () {
 	
 	// if device orientation changes 
 	$(window).on('orientationchange', function(event) {
+		setHeight();
 		// if ongoing game and device's orientation differs from when game plan was set
 		// user can turn device or refresh game plan
 		// preventing alert when turning back to original position
@@ -270,7 +282,12 @@ $(document).ready(function () {
     	// the function 'addImages' appends all images
 	function addImages() {
 		for (var i = 1; i <= 15; i ++) {
-			node.append('<img id="img-' + i + '" class="image draggable drag-drop tap-target" src="images/stick_' + i + '.png">');
+			if (!isIPhone) {
+				node.append('<img id="img-' + i + '" class="image draggable drag-drop tap-target" src="images/stick_' + i + '.png">');
+			} else {
+				node.append('<img id="img-' + i + '" class="image draggable drag-drop tap-target" src="images/stick_small_' + i + '.png">');
+			}
+			
 		}
 	}
 	
@@ -942,8 +959,8 @@ $(document).ready(function () {
 	/* ------------------------------------------------*/
 	//sound icon (on-off toggle)
 	$('#ic-sound').click(function () {
-		// toggle (true/false) for soundOn of draggable elements
-		soundOn = !soundOn;
+		// toggle (true/false) for soundOn of draggable elements and soundIntro
+		soundOn = !soundOn;	
 		soundIntroOn = !soundIntroOn;
 		var button = $(this);
 		//toggle for introSound
@@ -969,7 +986,7 @@ $(document).ready(function () {
 	});
 	
 	// stats icon -> showing player statistics and highscore toplists
-	$('#ic-stats').click(function () {
+	$('#ic-stats').click(function () { 
 		duringGame = false;
 		$('#statistics').hide();
 		$('.image').remove();
