@@ -940,7 +940,7 @@ $(document).ready(function () {
 			$('#btn-skip').hide();
 			gameOptions();
 		});
-    });
+    	});
 	
 	// 'skip intro' button -> leads to #options (defining players)
 	$('#btn-skip').click(function () {
