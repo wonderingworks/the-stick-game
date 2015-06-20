@@ -816,6 +816,7 @@ only screen and (min-device-width: 414px) and (max-device-width: 736px){
 	/*--------------------------- */
 	form {
 		margin-bottom: 20px;
+		width: 180px;
 	}
 
 	input {
@@ -997,6 +998,10 @@ and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: po
 
 	.center-area {
 		width: 120px;
+	}
+	
+	.storytext p, .storytext h1 {
+		  font-size: 9px;
 	}
 	
 /* End 4/4S Iphone Portrait */ }
