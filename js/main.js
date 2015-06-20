@@ -973,7 +973,7 @@ $(document).ready(function () {
 			$('#sound-img').attr('src', 'images/icon_mute_off.png');
 			soundIntro.play();
 		}		
-	}); 
+	});
 	
 	// refresh icon -> resetting the game plan
 	$('#ic-refresh').click(function () {
