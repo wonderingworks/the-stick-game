@@ -930,7 +930,7 @@ $(document).ready(function () {
 		// go to story
 		var button = $(this);
         	$('#intro').remove();
-		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
+		$('.storytext').append('<h1>wooden treasures. </h1><p>they have a past, they have been living in magic forests, have been breathing, have been watching silently.<br>they remained forgotten on the ground. <br>they got collected and received a new life.</p><h1>The sticks are what you see in them.</h1>');
         	$('#story').fadeIn(3000);
 		button.removeClass('btn-0').addClass('btn-1');
 		button.click(function () {
